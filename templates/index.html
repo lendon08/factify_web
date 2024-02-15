@@ -1,16 +1,65 @@
 <!-- templates/index.html -->
-
 {% extends "_base.html" %}
 
+{% load static %}
 {% block content %}
-<section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
-      <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Team</h2>
-        <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
-      </div> 
+
+<div class="grid w-full grid-cols-1 gap-2 m-2 mb-50">       
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-sm h-screen pt-32 pb-32">
+    <div class="flex items-center justify-center">
+        <div class="text-5xl text-gray-400 ">
+            Welcome to Factify
+        </div>
+    </div>
+    <div class="flex items-center justify-center h-16">
+      <div class="text-2xl text-gray-400 ">
+        The power of AI at your service - Tame the knowledge.
+      </div>
+    </div>
+    <div class="flex items-center justify-center h-16">
+      <div class="text-2xl text-gray-400 ">
+        <a href="{% url 'startPage' %}" class="flex items-center p-2 mx-4 text-base font-normal text-white rounded-lg group mt-4" style="background-color: #004CC6;">
+          <span>Start new chat</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex justify-center pt-5">
+      <div class="max-w-sm p-6">
+        <a href="#" class="flex items-center justify-center h-5">
+          <img src="{% static 'images/about.png' %}" alt="Clear and Precise">
+        </a>
+       
+        <h5 class="flex items-center justify-center mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Clear and precise</h5>
+      
+        <p class="flex text-center mb-3 font-normal text-gray-700 ">Pariatur sint laborum cillum aute consectetur irure.</p>
+        
+      </div>
+      <div class="max-w-sm p-6">
+        <a href="#" class="flex items-center justify-center">
+          <img src="{% static 'images/target.png' %}" alt="Personalized Answer">
+        </a>
+       
+        <h5 class="flex items-center justify-center mb-2 text-2xl font-bold tracking-tight text-gray-900">Personalized answers </h5>
+      
+        <p class="flex text-center mb-3 font-normal text-gray-700 ">Pariatur sint laborum cillum aute consectetur irure.</p>
+        
+      </div>
+      <div class="max-w-sm p-6">
+        <a href="#" class="flex items-center justify-center">
+          <img src="{% static 'images/trend_up.png' %}" alt="Increased efficiency">
+        </a>
+       
+        <h5 class="flex items-center justify-center mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Increased efficiency</h5>
+      
+        <span class="flex text-center mb-3 font-normal text-gray-700 ">Pariatur sint laborum cillum aute consectetur irure.</span>
+        
+      </div>
+    </div>
+    
+    
   </div>
-</section>
+</div>
 
 
 {% endblock content %}

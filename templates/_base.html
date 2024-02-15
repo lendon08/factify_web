@@ -9,9 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django + Tailwind CSS + Flowbite</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Factify</title>
+    <link rel="icon" href="{% static 'images/logo.css' %}">
+   
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
@@ -19,147 +20,81 @@
 </head>
 
 <body class="bg-green-50 " >
-    <div class="flex flex-row">
-        <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-            <span class="sr-only">Open sidebar</span>
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-               <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-            </svg>
-         </button>
-         
-         <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-100 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidenav">
-           <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-             <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
-                <img src="{% static 'images/logo.png' %}" alt="Facfity">
-                 <span class="self-center text-xl ml-4 whitespace-nowrap dark:text-white mr-4">Facfity</span>
-               </a>
-               <ul class="space-y-2">
-                   <li>
-                       <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <g clip-path="url(#clip0_115_407)">
-                             <path d="M16.6666 1.66669H3.33329C2.41663 1.66669 1.66663 2.41669 1.66663 3.33335V18.3334L4.99996 15H16.6666C17.5833 15 18.3333 14.25 18.3333 13.3334V3.33335C18.3333 2.41669 17.5833 1.66669 16.6666 1.66669ZM16.6666 13.3334H4.99996L3.33329 15V3.33335H16.6666V13.3334Z" fill="#383838"/>
-                             </g>
-                             <defs>
-                             <clipPath id="clip0_115_407">
-                             <rect width="20" height="20" fill="white"/>
-                             </clipPath>
-                             </defs>
-                             </svg>
-                             
-                           <span class="ml-3">How to write an impacting ...</span>
-                          
-                       </a>
-                   </li>
-                   <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <g clip-path="url(#clip0_115_407)">
-                             <path d="M16.6666 1.66669H3.33329C2.41663 1.66669 1.66663 2.41669 1.66663 3.33335V18.3334L4.99996 15H16.6666C17.5833 15 18.3333 14.25 18.3333 13.3334V3.33335C18.3333 2.41669 17.5833 1.66669 16.6666 1.66669ZM16.6666 13.3334H4.99996L3.33329 15V3.33335H16.6666V13.3334Z" fill="#383838"/>
-                             </g>
-                             <defs>
-                             <clipPath id="clip0_115_407">
-                             <rect width="20" height="20" fill="white"/>
-                             </clipPath>
-                             </defs>
-                             </svg>
-                             
-                         <span class="ml-3">Web Accessibility</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <g clip-path="url(#clip0_115_407)">
-                             <path d="M16.6666 1.66669H3.33329C2.41663 1.66669 1.66663 2.41669 1.66663 3.33335V18.3334L4.99996 15H16.6666C17.5833 15 18.3333 14.25 18.3333 13.3334V3.33335C18.3333 2.41669 17.5833 1.66669 16.6666 1.66669ZM16.6666 13.3334H4.99996L3.33329 15V3.33335H16.6666V13.3334Z" fill="#383838"/>
-                             </g>
-                             <defs>
-                             <clipPath id="clip0_115_407">
-                             <rect width="20" height="20" fill="white"/>
-                             </clipPath>
-                             </defs>
-                             </svg>
-                             
-                         <span class="ml-3">Design inspiration</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <g clip-path="url(#clip0_115_407)">
-                             <path d="M16.6666 1.66669H3.33329C2.41663 1.66669 1.66663 2.41669 1.66663 3.33335V18.3334L4.99996 15H16.6666C17.5833 15 18.3333 14.25 18.3333 13.3334V3.33335C18.3333 2.41669 17.5833 1.66669 16.6666 1.66669ZM16.6666 13.3334H4.99996L3.33329 15V3.33335H16.6666V13.3334Z" fill="#383838"/>
-                             </g>
-                             <defs>
-                             <clipPath id="clip0_115_407">
-                             <rect width="20" height="20" fill="white"/>
-                             </clipPath>
-                             </defs>
-                             </svg>
-         
-                         <span class="ml-3">What is machine learning</span>
-                     </a>
-                   </li>
-               </ul>
-                 <a href="#" class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group mt-4" style="background-color: #004CC6;">
-                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24">
-                         <path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-                       </svg>
-                     <span class="ml-3">Start new chat</span>
-                 </a>
-             
-           </div>
-             <div class="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
-                 <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
-                 <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <g clip-path="url(#clip0_115_439)">
-                             <path d="M13.3333 7.5V15.8333H6.66663V7.5H13.3333ZM12.0833 2.5H7.91663L7.08329 3.33333H4.16663V5H15.8333V3.33333H12.9166L12.0833 2.5ZM15 5.83333H4.99996V15.8333C4.99996 16.75 5.74996 17.5 6.66663 17.5H13.3333C14.25 17.5 15 16.75 15 15.8333V5.83333Z" fill="#383838"/>
-                             </g>
-                             <defs>
-                             <clipPath id="clip0_115_439">
-                             <rect width="20" height="20" fill="white"/>
-                             </clipPath>
-                             </defs>
-                             </svg>
-                         
-                         <span class="ml-3">Clear all conversation</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-                         <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <g filter="url(#filter0_d_115_446)">
-                             <path d="M15.8333 13.8333H4.16667V2.16667H10V0.5H4.16667C3.24167 0.5 2.5 1.25 2.5 2.16667V13.8333C2.5 14.75 3.24167 15.5 4.16667 15.5H15.8333C16.75 15.5 17.5 14.75 17.5 13.8333V8H15.8333V13.8333ZM11.6667 0.5V2.16667H14.6583L6.46667 10.3583L7.64167 11.5333L15.8333 3.34167V6.33333H17.5V0.5H11.6667Z" fill="#383838"/>
-                             <path d="M15.8333 14.3333H16.3333V13.8333V8.5H17V13.8333C17 14.4739 16.4739 15 15.8333 15H4.16667C3.51944 15 3 14.4755 3 13.8333V2.16667C3 1.52451 3.51944 1 4.16667 1H9.5V1.66667H4.16667H3.66667V2.16667V13.8333V14.3333H4.16667H15.8333ZM16.3333 5.83333V3.34167V2.13456L15.4798 2.98811L7.64167 10.8262L7.17377 10.3583L15.0119 2.52022L15.8654 1.66667H14.6583H12.1667V1H17V5.83333H16.3333Z" stroke="black"/>
-                             </g>
-                             </svg>
-                         <span class="ml-3">Updates and FAQ </span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M11.2206 14.2118L11.2189 14.2147C10.9317 14.6723 10.6964 15.1214 10.5152 15.5618C9.96941 14.229 8.93046 12.8205 7.3623 11.6441C6.70933 11.1516 6.03757 10.7589 5.35552 10.4783C7.01601 9.80877 8.55307 8.60074 9.61057 7.06691C9.9825 6.52959 10.2853 5.9878 10.5128 5.43246C11.1337 6.95297 12.3483 8.4305 13.8407 9.48667C14.4219 9.90008 15.024 10.2367 15.6432 10.4878C13.9048 11.2234 12.1775 12.7018 11.2206 14.2118Z" stroke="#383838" stroke-width="1.5"/>
-                             <path d="M3.80682 5.44722L3.80682 5.44722L3.80563 5.4491C3.69179 5.63054 3.59247 5.81014 3.50835 5.9878C3.18992 5.31467 2.6472 4.62355 1.86827 4.03922C1.57595 3.81875 1.27581 3.63411 0.970368 3.48956C1.8029 3.10916 2.56382 2.484 3.10019 1.70606C3.25883 1.47687 3.39499 1.24545 3.50676 1.00949C3.86867 1.77499 4.49325 2.50201 5.24322 3.03278C5.4987 3.21452 5.76218 3.36956 6.03252 3.4952C5.14656 3.92226 4.29499 4.67683 3.80682 5.44722Z" stroke="#383838"/>
-                             </svg>
-                         <span class="ml-3">About</span>
-                     </a>
-                 </li>
-             </ul>
-               
-                 
-             </div>
-           </div>
-         </aside>
-         
-        <div class="flex-1" style="background: rgb(0,0,0);
-        background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,212,255,1) 0%, rgba(0,212,255,1) 2%, rgba(62,222,255,1) 4%, rgba(255,255,255,1) 38%);">
+    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900">
+
+        <aside id="sidebar" class="relative top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-screen font-normal duration-75 lg:flex transition-width" aria-label="Sidebar">
+            <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
+                    <img src="{% static 'images/logo.png' %}" alt="Facfity">
+                    <span class="self-center text-xl ml-4 whitespace-nowrap dark:text-white mr-4">Facfity</span>
+                </a>
+                <ul class="space-y-2 h-1/2 overflow-y-auto">
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <img src="{% static 'images/chat.png' %}" alt="Chat">
+                            <span class="ml-3">How to write an impacting ...</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <img src="{% static 'images/chat.png' %}" alt="Chat">
+                            <span class="ml-3">Web Accessibility</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <img src="{% static 'images/chat.png' %}" alt="Chat">
+                            <span class="ml-3">Design inspiration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <img src="{% static 'images/chat.png' %}" alt="Chat">
+                            <span class="ml-3">What is machine learning</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <a href="{% url 'startPage' %}" class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group mt-4" style="background-color: #004CC6;">
+                    <img src="{% static 'images/add.png' %}" alt="Add new chat">
+                    <span class="ml-3">Start new chat</span>
+                </a>
+            
+              </div>
+                <div class="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
+                    <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                            <img src="{% static 'images/delete.png' %}" alt="Delete all chat">
+                            <span class="ml-3">Clear all conversation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                            <img src="{% static 'images/updates.png' %}" alt="Updates">
+                            <span class="ml-3">Updates and FAQ </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                            <img src="{% static 'images/about.png' %}" alt="About">
+                            <span class="ml-3">About</span>
+                        </a>
+                    </li>
+                </ul>
+                  
+                </div>
+        </aside>
+
+        <div id="main-content" class="relative w-full pr-4 h-screen bg-gray-200 dark:bg-gray-300 ">
+       
             {% block content %}
             {% endblock content %}
-        </div>
-    </div>
 
+        </div>
+
+    </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
