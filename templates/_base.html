@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Factify</title>
     <link rel="icon" href="{% static 'images/logo.css' %}">
-   
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
@@ -23,12 +23,12 @@
     <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900">
 
         <aside id="sidebar" class="relative top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-screen font-normal duration-75 lg:flex transition-width" aria-label="Sidebar">
-            <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <div class="overflow-y-auto py-5 px-3  bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 h-full">
                 <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
                     <img src="{% static 'images/logo.png' %}" alt="Facfity">
-                    <span class="self-center text-xl ml-4 whitespace-nowrap dark:text-white mr-4">Facfity</span>
+                    <span class="self-center text-3xl ml-4 whitespace-nowrap dark:text-white mr-4">Facfity</span>
                 </a>
-                <ul class="space-y-2 h-1/2 overflow-y-auto">
+                <ul class="space-y-2 h-1/2 overflow-y-auto min-h-[100px]">
                     <li>
                         <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
                             <img src="{% static 'images/chat.png' %}" alt="Chat">
@@ -60,40 +60,42 @@
                     <span class="ml-3">Start new chat</span>
                 </a>
             
-              </div>
-                <div class="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
-                    <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            <img src="{% static 'images/delete.png' %}" alt="Delete all chat">
-                            <span class="ml-3">Clear all conversation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
-                            <img src="{% static 'images/updates.png' %}" alt="Updates">
-                            <span class="ml-3">Updates and FAQ </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
-                            <img src="{% static 'images/about.png' %}" alt="About">
-                            <span class="ml-3">About</span>
-                        </a>
-                    </li>
-                </ul>
-                  
-                </div>
+            </div>
+            <div class="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
+                <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
+                <li>
+                    <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                        <img src="{% static 'images/delete.png' %}" alt="Delete all chat">
+                        <span class="ml-3">Clear all conversation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
+                        <img src="{% static 'images/updates.png' %}" alt="Updates">
+                        <span class="ml-3">Updates and FAQ </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'aboutPage' %}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
+                        <img src="{% static 'images/about.png' %}" alt="About">
+                        <span class="ml-3">About</span>
+                    </a>
+                </li>
+            </ul>
+                
+            </div>
         </aside>
 
         <div id="main-content" class="relative w-full pr-4 h-screen bg-gray-200 dark:bg-gray-300 ">
-       
             {% block content %}
             {% endblock content %}
-
         </div>
 
     </div>
+
+    {% block scripts %}
+    {% endblock scripts %}
+
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>

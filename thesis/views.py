@@ -10,14 +10,14 @@ def index(request):
     return HttpResponse(template.render())
 
 def startPage(request):
-    template = loader.get_template('start_page.html')
+    template = loader.get_template('views/start_page.html')
     return HttpResponse(template.render())
 
 def aboutPage(request):
-    template = loader.get_template('about_page.html')
+    template = loader.get_template('views/about_page.html')
     return HttpResponse(template.render())
    
 def updatePage(request):
-    template = loader.get_template('update_page.html')
+    template = loader.get_template('views/update_page.html')
     return HttpResponse(template.render())
 
