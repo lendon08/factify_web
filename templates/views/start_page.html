@@ -57,37 +57,47 @@
     </div>
     <!-- Change dependens on the value -->
     <div class="mx-20 mt-10">
-      {% if 1 == 1 %}
-        <div class="flex mx-auto bg-gradient-to-r from-red-100 via-red-300 to-red-400 gap-2 rounded-2xl border-solid border-2 border-red-400">
-          <div class="flex mx-auto gap-10">
-            <div class="pl-2" id="donut-chart"></div>
-            <div class="flex flex-col gap-2 text-red-600">
-              <div class="text-5xl tracking-wider mt-10"><strong>Fraudulent News</strong></div>
-              <div class="tracking-wide text-2xl ">Caution!!! This article might contain unverified information. Please cross-verify with reliable sources.</div>
-            </div>
+      <div class="flex">
+        <div class="flex mx-auto space-x-4">
+          <img src="{% static 'images/loading.gif' %}" alt="loading" width="75">
+          <div class="self-center text-3xl">Analyzing text</div>
+          <div class="loading">
+            <span class="loading__dot"></span>
+            <span class="loading__dot"></span>
+            <span class="loading__dot"></span>
           </div>
         </div>
-      {% elif 1 == 2 %}
-        <div class="flex mx-auto gap-2 rounded-2xl bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 border-solid border-2 border-gray-400">
-          <div class="flex mx-auto gap-10">
-            <div class="pl-2" id="donut-chart"></div>
-            <div class="flex flex-col gap-2 text-gray-600">
-              <div class="text-5xl tracking-wider mt-10"><strong> Neutral News</strong></div>
-              <div class="tracking-wide text-2xl ">This news is neutral and well-founded. Continue staying informed!</div>
-            </div>
+      </div>      
+      <div class="flex bg-gradient-to-r from-red-100 via-red-300 to-red-400 gap-2 rounded-2xl border-solid border-2 border-red-400">
+        <div class="flex mx-auto gap-10">
+          <div class="pl-2" id="fake"></div>
+          <div class="flex flex-col gap-2 text-red-600">
+            <div class="text-5xl tracking-wider mt-10"><strong>Fraudulent News</strong></div>
+            <div class="tracking-wide text-2xl ">Caution!!! This article might contain unverified information. Please cross-verify with reliable sources.</div>
           </div>
         </div>
-      {% else  %}
-        <div class="flex px-20 mx-auto gap-2 rounded-2xl bg-gradient-to-r from-green-100 via-green-300 to-green-400 border-solid border-2 border-green-400">
-          <div class="flex mx-auto gap-10">
-            <div class="pl-2" id="donut-chart"></div>
-            <div class="flex flex-col gap-2 text-green-600">
-              <div class="text-4xl pt-10 tracking-wider"><strong>Legitimate News</strong></div>
-              <div class="tracking-wide text-2xl ">Great News! This article appears to be well-supported and credible.</div>
-            </div>
+      </div>
+  
+      <div class="flex gap-2 rounded-2xl bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 border-solid border-2 border-gray-400">
+        <div class="flex mx-auto gap-10">
+          <div class="pl-2" id="neutral"></div>
+          <div class="flex flex-col gap-2 text-gray-600">
+            <div class="text-5xl tracking-wider mt-10"><strong> Neutral News</strong></div>
+            <div class="tracking-wide text-2xl ">This news is neutral and well-founded. Continue staying informed!</div>
           </div>
         </div>
-      {% endif %}
+      </div>
+    
+      <div class="flex px-20 gap-2 rounded-2xl bg-gradient-to-r from-green-100 via-green-300 to-green-400 border-solid border-2 border-green-400">
+        <div class="flex mx-auto gap-10">
+          <div class="pl-2" id="legit"></div>
+          <div class="flex flex-col gap-2 text-green-600">
+            <div class="text-4xl pt-10 tracking-wider"><strong>Legitimate News</strong></div>
+            <div class="tracking-wide text-2xl ">Great News! This article appears to be well-supported and credible.</div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
@@ -192,9 +202,14 @@ const getChartOptions = () => {
     }
   }
   
-  if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
-    const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
+ 
+    var chart = new ApexCharts(document.getElementById("fake"), getChartOptions());
     chart.render();
-
-  }</script>
+    var neutral = new ApexCharts(document.getElementById("neutral"), getChartOptions());
+    neutral.render();
+    var legit = new ApexCharts(document.getElementById("legit"), getChartOptions());
+    legit.render();
+    
+    
+  </script>
 {% endblock scripts %}
