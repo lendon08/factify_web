@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
-
+import datetime
+today = datetime.date.today()
+print(today)
 
 
 def index(request):
@@ -14,10 +16,11 @@ def startPage(request):
     return HttpResponse(template.render())
 
 def aboutPage(request):
+    
     template = loader.get_template('views/about_page.html')
-    return HttpResponse(template.render())
+    return HttpResponse(template.render({'year': today.strftime('%G')}))
    
-def updatePage(request):
-    template = loader.get_template('views/update_page.html')
-    return HttpResponse(template.render())
+def faqPage(request):
+    template = loader.get_template('views/faq_page.html')
+    return HttpResponse(template.render({'year': today.strftime('%G')}))
 

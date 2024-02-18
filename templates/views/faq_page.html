@@ -10,40 +10,31 @@
         <div class="flex text-3xl text-blue-800 space-x-4">
           <img src="{% static 'images/arrow-left.png' %}" alt="Back" class="h-full">
           <a href="{% url 'startPage' %}" class="flex items-center"><!-- TODO Need to back from the previous page. Currently, redirecting to start page  -->
-            
               Back
           </a>
         </div>
         <div class="text-5xl text-gray-800">
-          About
+          Updates
         </div>
         <div class="text-xl text-justify">
-          Factify, your trusted ally in navigating the complex world of news and information. We understand the importance of reliable, unbiased news in today's interconnected society, and we are committed to empowering you to make informed decisions.
+          <ul class="list-disc ml-6 space-y-10">
+            <li>We have added a new feature to Factify: the Factify Score. This is a numerical rating from 0 to 100 that indicates how reliable and accurate a news article is. The higher the score, the more trustworthy the source and the content. You can see the Factify Score for any article by tapping on the Factify icon in your browser or by using the Factify app.</li>
+            <li>We have improved the speed and accuracy of our fake news detection algorithm. Factify can now analyze news articles in seconds and provide you with a detailed report on the credibility of the information, the sources, the author, and the date of publication. You can also see the evidence and references that support or contradict the claims made in the article.</li>
+            <li>We have updated our database of verified and unverified news sources. Factify can now recognize and flag more than 10,000 news outlets from around the world, including mainstream media, alternative media, social media, blogs, and websites. You can also submit your own feedback on the quality and bias of any news source using the Factify app.</li>
+          </ul>
+        </div>
+        <div class="text-5xl text-gray-800">
+          FAQs
         </div>
         <div class="text-xl text-justify">
-          At Factify, our mission is simple: to foster a more informed and discerning public by helping you distinguish between credible news and misinformation. We believe that access to accurate information is a cornerstone of a healthy and thriving society.
+          <ul class="list-disc ml-6 space-y-10">
+            <li><strong>What is Factify? </strong> Factify is a fake news detector app that helps you verify the authenticity and reliability of any news article. Factify uses artificial intelligence and natural language processing to analyze the content, the source, the author, and the date of the article and provide you with a comprehensive report on its credibility. Factify also gives you a Factify Score, a numerical rating from 0 to 100 that indicates how trustworthy the article is.</li>
+            <li><strong>How does Factify work?</strong> Factify works by comparing the news article with a large database of verified and unverified news sources, as well as with other articles on the same topic from different perspectives. Factify also checks the facts and claims made in the article against reliable sources of information, such as official statistics, scientific studies, and reputable media outlets. Factify then generates a report that summarizes the findings and shows you the evidence and references that support or contradict the article.</li>
+            <li><strong>How can I use Factify?</strong> The Factify application allows you to copy and paste any news article in Filipino language. Just click on the Detect button and wait fo the results.</li>
+          </ul>
         </div>
     </div>
-    <div class="flex flex-col mx-auto my-auto items-center space-y-6 text-2xl">
-      Meet the Factify team
-      <div class="flex space-x-56">
-        <div class="flex flex-col items-center gap-2 mt-6">
-          <img src="{% static 'images/profile1.png' %}" alt="Developer 1" width="200px" class="rounded-full">
-          <span class="text-xl"><strong>Developer</strong></span>
-          <span class="text-xl">Abner Dominic B. Belotindos</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 mt-6">
-          <img src="{% static 'images/profile2.png' %}" alt="Developer 2" width="200px" class="rounded-full">
-          <span class="text-xl"><strong>Developer</strong></span>
-          <span class="text-xl">John Andrei A. Manalo</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 mt-6">
-          <img src="{% static 'images/profile3.jpg' %}" alt="Developer 3" width="200px" class="rounded-full">
-          <span class="text-xl"><strong>Developer</strong></span>
-          <span class="text-xl">Lendon N. Ato</span>
-        </div>
-      </div>
-    </div>
+   
     
     <div class="w-full mx-auto o mt-52 sticky bottom-0 ">
       <div class="flex justify-between">
