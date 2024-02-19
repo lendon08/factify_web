@@ -1,4 +1,4 @@
-<!-- templates/_base.html -->
+<!-- templates/_base2.html -->
 
 {% load compress %}
 {% load static %}
@@ -9,10 +9,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Factify</title>
     <link rel="icon" href="{% static 'images/logo.css' %}">
-    
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
@@ -30,7 +31,47 @@
         </div>
 
     </div>
+    {% block scripts %}
+    {% endblock scripts %}
     
+
+    
+
+    
+
+    <div data-dial-init class="fixed top-6 end-6 group">
+        <button type="button" data-dial-toggle="speed-dial-menu-top-right" aria-controls="speed-dial-menu-top-right" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+            <svg class="w-8 h-8 transition-transform group-hover:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.5 10a2.5 2.5 0 1 1 5 .2 2.4 2.4 0 0 1-2.5 2.4V14m0 3h0m9-5a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+            <span class="sr-only">Open actions menu</span>
+        </button>
+        <div id="speed-dial-menu-top-right" class="flex flex-col items-center hidden mt-4 space-y-2">
+            <a href="{% url 'startPage' %}" data-tooltip-target="tooltip-newchat" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                <img src="{% static 'images/new_chat.png' %}" alt="About" width="20">
+            </a>
+            <div id="tooltip-newchat" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                New Chat
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <a href="{% url 'faqPage' %}" data-tooltip-target="tooltip-updates" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                <img src="{% static 'images/updates.svg' %}" alt="Updates">
+            </a>
+            <div id="tooltip-updates" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Updates and FAQ
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <a href="{% url 'aboutPage' %}" data-tooltip-target="tooltip-about" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                <img src="{% static 'images/about.svg' %}" alt="About">
+            </a>
+            <div id="tooltip-about" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                About
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 

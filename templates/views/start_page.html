@@ -1,5 +1,5 @@
 <!-- templates/start_page.html -->
-{% extends "_base.html" %}
+{% extends "_base2.html" %}
 
 {% load static %}
 {% block content %}
@@ -44,7 +44,7 @@
                 
             </div>
             <div class="float-right">
-              <button type="reset" class="inline-flex mt-10 items-center px-5 py-2.5 text-base font-normal text-gray-900 bg-gray-300 rounded-lg transition duration-75 hover:bg-gray-500">
+              <button type="reset" class="inline-flex mt-10 items-center px-5 py-2.5 text-sm font-medium  text-gray-900 bg-gray-300 rounded-lg transition duration-75 hover:bg-gray-500">
                   Clear
               </button>
               <button type="submit" class="inline-flex mt-10 items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
@@ -56,23 +56,12 @@
         
     </div>
     <!-- Change dependens on the value -->
-    <div class="mx-20 mt-10">
-      <div class="flex">
-        <div class="flex mx-auto space-x-4">
-          <img src="{% static 'images/loading.gif' %}" alt="loading" width="75">
-          <div class="self-center text-3xl">Analyzing text</div>
-          <div class="loading">
-            <span class="loading__dot"></span>
-            <span class="loading__dot"></span>
-            <span class="loading__dot"></span>
-          </div>
-        </div>
-      </div>      
+    <div class="mx-20 mt-10">    
       <div class="flex bg-gradient-to-r from-red-100 via-red-300 to-red-400 gap-2 rounded-2xl border-solid border-2 border-red-400">
         <div class="flex mx-auto gap-10">
           <div class="pl-2" id="fake"></div>
           <div class="flex flex-col gap-2 text-red-600">
-            <div class="text-5xl tracking-wider mt-10"><strong>Fraudulent News</strong></div>
+            <div class="text-4xl tracking-wider mt-10"><strong>Fraudulent News</strong></div>
             <div class="tracking-wide text-2xl ">Caution!!! This article might contain unverified information. Please cross-verify with reliable sources.</div>
           </div>
         </div>
@@ -82,7 +71,7 @@
         <div class="flex mx-auto gap-10">
           <div class="pl-2" id="neutral"></div>
           <div class="flex flex-col gap-2 text-gray-600">
-            <div class="text-5xl tracking-wider mt-10"><strong> Neutral News</strong></div>
+            <div class="text-4xl tracking-wider mt-10"><strong> Neutral News</strong></div>
             <div class="tracking-wide text-2xl ">This news is neutral and well-founded. Continue staying informed!</div>
           </div>
         </div>
@@ -123,8 +112,8 @@ const getChartOptions = () => {
       series: [percentage, total-percentage],
       colors: ["#FF5555", "#019A5A"],
       chart: {
-        height: '400px',
-        width: "400px",
+        height: '350px',
+        width: "350px",
         type: "donut",
         
       },
@@ -176,7 +165,7 @@ const getChartOptions = () => {
       },
       legend: {
         position: "right",
-        offsetY: 70,
+        offsetY: 50,
         fontFamily: "Inter, sans-serif",
       },
       yaxis: {

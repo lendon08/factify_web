@@ -29,33 +29,7 @@
                     <img src="{% static 'images/logo.png' %}" alt="Facfity">
                     <span class="self-center text-3xl ml-4 whitespace-nowrap dark:text-white mr-4">Facfity</span>
                 </a>
-                <ul class="space-y-2 h-1/2 overflow-y-auto min-h-[100px]">
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            <img src="{% static 'images/chat.png' %}" alt="Chat">
-                            <span class="ml-3">How to write an impacting ...</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            <img src="{% static 'images/chat.png' %}" alt="Chat">
-                            <span class="ml-3">Web Accessibility</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            <img src="{% static 'images/chat.png' %}" alt="Chat">
-                            <span class="ml-3">Design inspiration</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            <img src="{% static 'images/chat.png' %}" alt="Chat">
-                            <span class="ml-3">What is machine learning</span>
-                        </a>
-                    </li>
-                    
-                </ul>
+                
                 <a href="{% url 'startPage' %}" class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  mt-4" style="background-color: #004CC6;">
                     <img src="{% static 'images/add.png' %}" alt="Add new chat">
                     <span class="ml-3">Start new chat</span>
@@ -65,20 +39,14 @@
             <div class="hidden absolute bottom-0 left-0 p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
                 <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
                 <li>
-                    <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                        <img src="{% static 'images/delete.png' %}" alt="Delete all chat">
-                        <span class="ml-3">Clear all conversation</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
-                        <img src="{% static 'images/updates.png' %}" alt="Updates">
+                    <a href="{% url 'faqPage' %}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
+                        <img src="{% static 'images/updates.svg' %}" alt="Updates">
                         <span class="ml-3">Updates and FAQ </span>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'aboutPage' %}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white ">
-                        <img src="{% static 'images/about.png' %}" alt="About">
+                        <img src="{% static 'images/about.svg' %}" alt="About">
                         <span class="ml-3">About</span>
                     </a>
                 </li>
