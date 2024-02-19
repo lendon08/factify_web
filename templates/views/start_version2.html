@@ -1,0 +1,274 @@
+<!-- templates/start_page.html -->
+{% extends "_base2.html" %}
+
+{% load static %}
+{% block content %}
+    
+
+    <!-- Analyze (Display while waiting for the model to response.) -->
+    <!-- <div class="flex flex-col bg-gray-50 text-gray-800 w-1/6 items-center text-2xl min-h-full max-h-screen">
+      <div class="flex flex-col w-full h-full justify-center items-center">
+        <img src="{% static 'images/loading.gif' %}" alt="loading" width="200">
+        <div>Analyzing Text</div>  
+      </div>
+      
+      <div class="flex w-full h-1/4 items-end ">
+        <div class="w-full mb-4 mx-4 justify-items-stretch">
+          <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- start -->
+    <!-- <div class="flex flex-col pl-4 text-left text-gray-800 justify-between w-1/6">
+        <div>
+          <div class="pt-4 mb-4">
+            <h3 class="text-2xl"><strong>Let’s get started.</strong></h3>
+          </div>    
+          <ul class="space-y-4">
+            <li><strong>Step 1:</strong> Type or paste the news article.</li>
+            <li><strong>Step 2:</strong> Click the ‘Detect’ button to analyze the article.</li>
+            <li><strong>Step 3:</strong> Wait for the results</li>
+          </ul>
+        </div>
+        <div class="flex w-full h-1/4 items-end text-lg">
+          <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
+            <button type="reset" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+                Clear
+            </button>
+            <button type="reset" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
+                Detect
+            </button>
+            
+          </div>
+        </div>
+    </div> -->
+
+    <!-- Real (Display when the model returns a value that is less than 50%)--->
+    <div class="flex flex-col bg-gray-50 text-gray-800 w-1/6 items-center text-2xl min-h-full max-h-screen space-y-4">
+      <div class="pl-2" id="fake"></div>
+      <div class="text-green-600 text-4xl">REAL</div>
+      <div class="w-full  ml-2">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-gray-50 ">
+                <tr class="space-x-2">
+                    <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                      Naive Bayes
+                    </th>
+                    <td class="py-2">
+                      Real
+                    </td>
+                    <td class="py-2">
+                      72%
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                      Random Forest
+                    </th>
+                    <td class="py-2">
+                      Fake
+                    </td>
+                    <td class="py-2">
+                      81%
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                      Logistic Regression
+                    </th>
+                    <td class="py-2">
+                      Real
+                    </td>
+                    <td class="py-2">
+                      79%
+                    </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                    Support Vector Machine
+                  </th>
+                  <td class="py-2">
+                    Real
+                  </td>
+                  <td class="py-2">
+                    80%
+                  </td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                  K-Nearest Neighbors
+                </th>
+                <td class="py-2">
+                  Real
+                </td>
+                <td class="py-2">
+                  80% 
+                </td>
+            </tr>
+        </table>
+      </div>
+      <div class="flex w-full h-1/4 items-end ">
+        <div class="w-full mb-4 mx-4 justify-items-stretch">
+          <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fake  (Display when the model returns a value that is more than 50%)-->
+
+
+    <!-- Neutral (Display when the model returns a value that is 50%) -->
+    
+
+
+
+    <!-- Change dependens on the value -->
+    <!-- <div class="mx-20 mt-10">    
+      <div class="flex bg-gradient-to-r from-red-100 via-red-300 to-red-400 gap-2 rounded-2xl border-solid border-2 border-red-400">
+        <div class="flex mx-auto gap-10">
+          <div class="pl-2" id="fake"></div>
+          <div class="flex flex-col gap-2 text-red-600">
+            <div class="text-4xl tracking-wider mt-10"><strong>Fraudulent News</strong></div>
+            <div class="tracking-wide text-2xl ">Caution!!! This article might contain unverified information. Please cross-verify with reliable sources.</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flex gap-2 rounded-2xl bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 border-solid border-2 border-gray-400">
+        <div class="flex mx-auto gap-10">
+          <div class="pl-2" id="neutral"></div>
+          <div class="flex flex-col gap-2 text-gray-600">
+            <div class="text-4xl tracking-wider mt-10"><strong> Neutral News</strong></div>
+            <div class="tracking-wide text-2xl ">This news is neutral and well-founded. Continue staying informed!</div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="flex px-20 gap-2 rounded-2xl bg-gradient-to-r from-green-100 via-green-300 to-green-400 border-solid border-2 border-green-400">
+        <div class="flex mx-auto gap-10">
+          <div class="pl-2" id="legit"></div>
+          <div class="flex flex-col gap-2 text-green-600">
+            <div class="text-4xl pt-10 tracking-wider"><strong>Legitimate News</strong></div>
+            <div class="tracking-wide text-2xl ">Great News! This article appears to be well-supported and credible.</div>
+          </div>
+        </div>
+      </div>
+      
+    </div> -->
+  
+
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+<script>
+  const total = 100;
+  let percentage = 75;
+  let dispLabel = "";
+  if(percentage){
+    dispLabel = "Fraudulent";
+  }else if(percentage==50){
+    dispLabel = "Neutral";
+  }else{
+    dispLabel = "Legitimate";
+  }
+const getChartOptions = () => {
+    return {
+      series: [percentage, total-percentage],
+      colors: ["#019A5A", "#CFCFCF"],
+      chart: {
+        height: '350px',
+        width: "350px",
+        type: "donut",
+        
+      },
+      stroke: {
+        colors: ["transparent"],
+        lineCap: "",
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            labels: {
+              show: true,
+              name: {
+                show: true,
+                fontFamily: "Inter, sans-serif",
+                offsetY: 20,
+              },
+              total: {
+                showAlways: true,
+                show: true,
+                label: dispLabel,
+                fontFamily: "Inter, sans-serif",
+                formatter: function (w) {
+                  return percentage + '%'
+                },
+              },
+              value: {
+                showAlways: true,
+                show: true,
+                fontFamily: "Inter, sans-serif",
+                offsetY: -20,
+                formatter: function (val) {
+                  return val + "%"
+                },
+              },
+            },
+            size: "90%",
+          },
+        },
+      },
+      grid: {
+        padding: {
+          top: -2,
+        },
+      },
+      labels: ["Real", "Fake"],
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        position: "bottom",
+        fontFamily: "Inter, sans-serif",
+      },
+      yaxis: {
+        labels: {
+          formatter: function (value) {
+            return value + "%"
+          },
+        },
+      },
+      xaxis: {
+        labels: {
+          formatter: function (value) {
+            return value  + "%"
+          },
+        },
+        axisTicks: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+      },
+    }
+  }
+  
+ 
+    var chart = new ApexCharts(document.getElementById("fake"), getChartOptions());
+    chart.render();
+    //var neutral = new ApexCharts(document.getElementById("neutral"), getChartOptions());
+    //neutral.render();
+    //var legit = new ApexCharts(document.getElementById("legit"), getChartOptions());
+    //legit.render();
+    
+    
+  </script>
+{% endblock scripts %}

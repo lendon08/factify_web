@@ -15,6 +15,10 @@ def startPage(request):
     template = loader.get_template('views/start_page.html')
     return HttpResponse(template.render())
 
+def versionTwo(request):
+    template = loader.get_template('views/start_version2.html')
+    return HttpResponse(template.render())
+
 def aboutPage(request):
     
     template = loader.get_template('views/about_page.html')
@@ -23,4 +27,3 @@ def aboutPage(request):
 def faqPage(request):
     template = loader.get_template('views/faq_page.html')
     return HttpResponse(template.render({'year': today.strftime('%G')}))
-

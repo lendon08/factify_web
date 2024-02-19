@@ -20,13 +20,43 @@
 
 </head>
 
-<body class="bg-green-50 " >
-    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900">
+<body>
+    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900 overflow-y-auto">
 
-        <div id="main-content" class="relative w-full pr-4 h-screen bg-gray-200 dark:bg-gray-300 ">
-       
-            {% block content %}
-            {% endblock content %}
+        <div id="main-content" class="relative w-screen h-screen bg-gray-100">
+            <div class="pt-8 mx-auto w-5/6 text-center lg:py-16">
+                <a href="{{ .Site.Params.homepage }}/" class="flex justify-center items-center mb-4">
+                    <img src="{% static 'images/logo.png' %}" alt="Facfity">
+                    <div class=" text-4xl leading-none text-gray-900 md:text-4xl lg:text-4xl ">Factify</div>
+                </a>
+                <h1 class="mb-8 text-4xl leading-none text-gray-900 md:text-4xl lg:text-4xl tracking-wide">
+                    Filipino Fake News Detector
+                </h1>
+                <h2 class="mb-8 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400 w-full">
+                    Transform your online experience with the Filipino Fake News Detector, ensuring a world where information is a beacon of truth. Paste your text or start typing below to determine whether the article is fake or not.
+                </h2>
+                <div class="flex px-20 mx-auto my-auto h-full">
+        
+                    <form class="w-full h-full">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="flex h-full w-full px-4 bg-white rounded-3xl border-4 border-gray-300  divide-x divide-gray-300 divide-x-4">
+                            <div class="w-5/6">
+                                <label for="editor" class="sr-only">Text field</label>
+                                <textarea id="editor" rows="20" class="block w-full h-full resize-none px-0 text-lg text-gray-800 font-thin text-gray-800 bg-white border-0 focus:ring-0" required></textarea>
+                            </div>
+                            
+                            {% block content %}
+                            {% endblock content %}      
+                            
+                        </div>
+                       
+                        
+                    </form>
+                </div>
+            </div>
+        
+            
 
         </div>
 
@@ -39,7 +69,7 @@
 
     
 
-    <div data-dial-init class="fixed top-6 end-6 group">
+    <!-- <div data-dial-init class="fixed top-6 end-6 group">
         <button type="button" data-dial-toggle="speed-dial-menu-top-right" aria-controls="speed-dial-menu-top-right" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
             <svg class="w-8 h-8 transition-transform group-hover:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.5 10a2.5 2.5 0 1 1 5 .2 2.4 2.4 0 0 1-2.5 2.4V14m0 3h0m9-5a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
@@ -70,7 +100,7 @@
             </div>
             
         </div>
-    </div>
+    </div> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
