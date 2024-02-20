@@ -47,10 +47,10 @@
     </div> -->
 
     <!-- Real (Display when the model returns a value that is less than 50%)--->
-    <div class="flex flex-col bg-gray-50 text-gray-800 w-1/6 items-center text-2xl min-h-full max-h-screen space-y-4">
-      <div class="pl-2" id="fake"></div>
+    <div class="flex flex-col bg-gray-50 text-gray-800 w-1/6 items-center text-2xl min-h-0 max-h-screen min-w-0 max-w-screen space-y-4">
+      <div class="pl-2 mx-auto min-w-0 max-w-full" id="fake"></div>
       <div class="text-green-600 text-4xl">REAL</div>
-      <div class="w-full  ml-2">
+      <div class="w-full ml-2 ">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-gray-50 ">
                 <tr class="space-x-2">
                     <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
@@ -183,10 +183,13 @@ const getChartOptions = () => {
       series: [percentage, total-percentage],
       colors: ["#019A5A", "#CFCFCF"],
       chart: {
-        height: '350px',
-        width: "350px",
+        width: '100%',
         type: "donut",
-        
+        events: {
+          mounted: (chart) => {
+            chart.windowResizeHandler();
+          }
+        }
       },
       stroke: {
         colors: ["transparent"],
@@ -207,6 +210,7 @@ const getChartOptions = () => {
                 show: true,
                 label: dispLabel,
                 fontFamily: "Inter, sans-serif",
+                fontSize: '15',
                 formatter: function (w) {
                   return percentage + '%'
                 },
@@ -235,6 +239,8 @@ const getChartOptions = () => {
         enabled: false,
       },
       legend: {
+        width: '100%',
+        height: '100%',
         position: "bottom",
         fontFamily: "Inter, sans-serif",
       },
@@ -260,7 +266,7 @@ const getChartOptions = () => {
       },
     }
   }
-  
+
  
     var chart = new ApexCharts(document.getElementById("fake"), getChartOptions());
     chart.render();
