@@ -13,7 +13,10 @@
     <title>Factify</title>
     <link rel="icon" href="{% static 'images/logo.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap" rel="stylesheet">
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
@@ -23,35 +26,33 @@
 <body>
     <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900 overflow-y-auto">
 
-        <div id="main-content" class="relative w-screen h-screen bg-gray-100">
-            <div class="pt-8 mx-auto w-5/6 text-center lg:py-16">
-                <a href="{{ .Site.Params.homepage }}/" class="flex justify-center items-center mb-4">
+        <div id="main-content" class="relative w-screen h-screen ">
+            <div class="pt-8 mx-auto w-5/6 text-center lg:py-16 space-y-10">
+                <a href="{{ .Site.Params.homepage }}/" class="flex justify-center items-center space-x-4">
                     <img src="{% static 'images/logo.png' %}" alt="Facfity">
-                    <div class=" text-4xl leading-none text-gray-900 md:text-4xl lg:text-4xl ">Factify</div>
+                    <div class=" text-4xl leading-none text-gray-900 md:text-4xl lg:text-4xl ">factify</div>
                 </a>
-                <h1 class="mb-8 text-4xl leading-none text-gray-900 md:text-4xl lg:text-4xl tracking-wide">
+                <h1 class="text-4xl leading-none text-gray-900 md:text-4xl lg:text-4xl tracking-wide">
                     Filipino Fake News Detector
                 </h1>
-                <h2 class="mb-8 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400 w-full">
+                <h2 class="text-lg font-normal text-gray-600 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400 w-full">
                     Transform your online experience with the Filipino Fake News Detector, ensuring a world where information is a beacon of truth. Paste your text or start typing below to determine whether the article is fake or not.
                 </h2>
-                <div class="flex px-20 mx-auto my-auto h-full">
+                <div class="flex px-20 my-auto h-full ">
         
-                    <form class="w-full h-full">
+                    <form class="w-full h-full drop-shadow-2xl">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <div class="flex h-full w-full px-4 bg-white rounded-3xl border-4 border-gray-300  divide-x divide-gray-300 divide-x-4">
+                        <div class="flex h-full w-full px-4 bg-gradient-to-r from-white to-gray-50 rounded-3xl  border border-gray-300  divide-x divide-gray-300 divide-x">
                             <div class="w-5/6">
                                 <label for="editor" class="sr-only">Text field</label>
-                                <textarea id="editor" rows="20" class="block w-full h-full resize-none px-0 text-lg text-gray-800 font-thin text-gray-800 bg-white border-0 focus:ring-0" required></textarea>
+                                <textarea id="editor" rows="20" class="block w-full h-full resize-none px-0 text-sm text-gray-800 font-thin text-gray-800 bg-white border-0 focus:ring-0" required></textarea>
                             </div>
-                            
                             {% block content %}
                             {% endblock content %}      
-                            
+                        
                         </div>
                        
-                        
                     </form>
                 </div>
             </div>
