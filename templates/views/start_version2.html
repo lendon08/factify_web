@@ -47,13 +47,13 @@
     </div> -->
 
     <!-- Real (Display when the model returns a value that is less than 50%)--->
-    <div class="flex flex-col bg-gray-50 text-gray-800 w-1/6 items-center text-2xl min-h-0 max-h-screen min-w-0 max-w-screen space-y-4">
+    <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
       <div class="pl-2 mx-auto min-w-0 max-w-full" id="fake"></div>
-      <h3 class="text-green-600 text-4xl">REAL</h3>
-      <div class="w-full ml-2 overflow-y-hidden overflow-x-hidden">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-gray-50 ">
+      <h3 class="text-green-600">REAL</h3>
+      <div class="w-full ml-2 overflow-x-auto">
+        <table class="w-full text-xs text-left  text-gray-500 bg-gray-50 ">
                 <tr class="space-x-2">
-                    <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                    <th scope="row" class="py-2 font-medium dark:text-white">
                       Naive Bayes
                     </th>
                     <td class="py-2">
@@ -86,7 +86,7 @@
                     </td>
                 </tr>
                 <tr>
-                  <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                  <th scope="row" class="py-2 font-medium dark:text-white">
                     Support Vector Machine
                   </th>
                   <td class="py-2">
@@ -109,7 +109,7 @@
             </tr>
         </table>
       </div>
-      <div class="flex w-full h-1/4 items-end ">
+      <div class="flex w-full items-end ">
         <div class="w-full mb-4 mx-4 justify-items-stretch">
           <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
             Clear
@@ -182,6 +182,7 @@
   }
 const getChartOptions = () => {
     return {
+      fontSize: '14px',
       series: [percentage, total-percentage],
       colors: ["#019A5A", "#CFCFCF"],
       chart: {
@@ -212,7 +213,7 @@ const getChartOptions = () => {
                 show: true,
                 label: dispLabel,
                 fontFamily: "Inter, sans-serif",
-                fontSize: '15',
+                fontSize: '10',
                 formatter: function (w) {
                   return percentage + '%'
                 },

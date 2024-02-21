@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base{
-    #title, h1, h3{
+    .title, h1, h3{
         font-family: "Outfit", sans-serif;
         font-optical-sizing: auto;
         font-weight: 700;
