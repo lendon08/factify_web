@@ -1,10 +1,14 @@
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
 import datetime
 today = datetime.date.today()
 
+import joblib
+
+
+loaded_stack_model = joblib.load("static/joblib/stack_lr.joblib")
+# print(loaded_stack_model)
 # TODO
 # change color if fake or real
 # FAKE = 9A01014A
@@ -12,6 +16,8 @@ today = datetime.date.today()
 # Default =  4E5DDD4A
 # if else in here 
 radialColor="#019A5A"
+
+
 
 def index(request):
     template = loader.get_template('index.html')
@@ -32,3 +38,4 @@ def aboutPage(request):
 def faqPage(request):
     template = loader.get_template('views/faq_page.html')
     return HttpResponse(template.render({'year': today.strftime('%G')}))
+
