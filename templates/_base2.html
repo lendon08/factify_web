@@ -32,7 +32,7 @@
         Real = 019A5A4A
         Default =  4E5DDD4A
     -->
-    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900 overflow-y-auto" style = 'background: radial-gradient(ellipse at 50% 100%, #019A5A4A, transparent 50%);'>
+    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900 overflow-y-auto" style = 'background: radial-gradient(ellipse at 50% 100%, {{radialColor}}, transparent 50%);'>
   
         <div id="main-content" class="relative w-screen h-screen ">
             <div class="mx-auto w-5/6 text-center pt-4 space-y-10">
@@ -48,13 +48,13 @@
                 </h2>
                 <div class="flex px-20 my-auto h-full ">
         
-                    <form class="w-full h-full drop-shadow-2xl">
+                    <form class="w-full h-full drop-shadow-2xl" method="post" action="/">
                         {% csrf_token %}
-                        {{ form.as_p }}
                         <div class="flex h-full w-full px-4 bg-gradient-to-r from-white to-gray-50 rounded-3xl  border border-gray-300  divide-x divide-gray-300 divide-x">
                             <div class="w-9/12">
                                 <label for="editor" class="sr-only">Text field</label>
-                                <textarea id="editor" rows="20" class="block w-full h-full resize-none  text-sm text-gray-800 font-thin text-gray-800 bg-white border-0 focus:ring-0 pt-8 px-8" required></textarea>
+                                {{ form.content }}
+                                <!-- <textarea id="editor" rows="20" class="block w-full h-full resize-none  text-xs text-gray-900 font-medium text-gray-800 bg-white border-0 focus:ring-0 pt-8 px-8" required></textarea> -->
                             </div>
                             {% block content %}
                             {% endblock content %}      

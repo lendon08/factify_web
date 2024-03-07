@@ -3,33 +3,10 @@
 
 {% load static %}
 {% block content %}
+     <!-- Initial -->
+    {% if todisplay == 1 %}
     
-
-    <!-- Analyze (Display while waiting for the model to response.) -->
-    <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
-      <div class="flex flex-col w-full h-full justify-center items-center space-y-8">
-        <div role="status">
-            <svg aria-hidden="true" class="inline w-52 h-52 text-gray-200 animate-pulse dark:text-gray-600 " viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle r="50" cx="200" cy="200" stroke="#004CC6" stroke-width="20" opacity="0.5"/>
-              <circle r="90" cx="200" cy="200" stroke="#004CC6" stroke-width="20" opacity="0.75"/>
-              <circle r="130" cx="200" cy="200" stroke="#004CC6" stroke-width="20" />
-            </svg>
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div>Analyzing Text</div>  
-      </div>
-      
-      <div class="flex w-full h-1/4 items-end ">
-        <div class="w-full mb-4 mx-4 justify-items-stretch">
-          <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
-            Clear
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- start -->
-    <!-- <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
+      <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
         <div>
           <div class="pt-4 mb-4 text-gray-800">
             <h3 class="text-lg"><strong>Let’s get started.</strong></h3>
@@ -45,39 +22,65 @@
             <button type="reset" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
                 Clear
             </button>
-            <button type="reset" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
+            <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
                 Detect
             </button>
             
           </div>
         </div>
-    </div> -->
-
-    <!-- Real (Display when the model returns a value that is less than 50%)--->
-    <!-- <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
+      </div>
+    {% elif todisplay == 2 %}
+      <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
+        <div class="flex flex-col w-full h-full justify-center items-center space-y-8">
+          <div role="status">
+              <svg aria-hidden="true" class="inline w-52 h-52 text-gray-200 animate-pulse dark:text-gray-600 " viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle r="50" cx="200" cy="200" stroke="#004CC6" stroke-width="20" opacity="0.5"/>
+                <circle r="90" cx="200" cy="200" stroke="#004CC6" stroke-width="20" opacity="0.75"/>
+                <circle r="130" cx="200" cy="200" stroke="#004CC6" stroke-width="20" />
+              </svg>
+              <span class="sr-only">Loading...</span>
+          </div>
+          <div>Analyzing Text</div>  
+        </div>
+        
+        <div class="flex w-full h-1/4 items-end ">
+          <div class="w-full mb-4 mx-4 justify-items-stretch">
+            <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    {% else %}
+    <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
       <div class="pl-2 mx-auto min-w-0 max-w-full" id="fake"></div>
+      {% if todisplay == 3 %}
       <h3 class="text-green-600">REAL</h3>
-      <div class="w-full ml-2 overflow-x-auto">
+      {% else %}
+      <h3 class="text-red-600">FAKE</h3>
+      {% endif %}
+      <div class="w-full ml-2 overflow-x-auto ">
         <table class="w-full text-xs text-left  text-gray-500 bg-gray-50 ">
                 <tr class="space-x-2">
                     <th scope="row" class="py-2 font-medium dark:text-white">
                       Naive Bayes
                     </th>
-                    <td class="py-2">
+                    <td class="py-2 font-medium">
                       Real
                     </td>
-                    <td class="py-2">
+                    <td class="py-2 font-medium">
                       72%
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                    <th scope="row" class="py-2 font-medium  whitespace-nowrap dark:text-white">
                       Random Forest
                     </th>
-                    <td class="py-2">
+                    <td class="py-2 font-medium">
                       Fake
                     </td>
-                    <td class="py-2">
+                    <td class="py-2 font-medium">
                       81%
                     </td>
                 </tr>
@@ -85,10 +88,10 @@
                     <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
                       Logistic Regression
                     </th>
-                    <td class="py-2">
+                    <td class="py-2 font-medium">
                       Real
                     </td>
-                    <td class="py-2">
+                    <td class="py-2 font-medium">
                       79%
                     </td>
                 </tr>
@@ -96,21 +99,21 @@
                   <th scope="row" class="py-2 font-medium dark:text-white">
                     Support Vector Machine
                   </th>
-                  <td class="py-2">
+                  <td class="py-2 font-medium">
                     Real
                   </td>
-                  <td class="py-2">
+                  <td class="py-2 font-medium">
                     80%
                   </td>
               </tr>
               <tr>
-                <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
+                <th scope="row" class="py-2 font-medium  whitespace-nowrap dark:text-white">
                   K-Nearest Neighbors
                 </th>
-                <td class="py-2">
+                <td class="py-2 font-medium">
                   Real
                 </td>
-                <td class="py-2">
+                <td class="py-2 font-medium">
                   80% 
                 </td>
             </tr>
@@ -123,7 +126,15 @@
           </button>
         </div>
       </div>
-    </div> -->
+    </div>
+    {% endif %}
+    <!-- Analyze (Display while waiting for the model to response.) -->
+    <!--  -->
+
+   
+
+    <!-- Real (Display when the model returns a value that is less than 50%)--->
+    
 
     <!-- Fake  (Display when the model returns a value that is more than 50%)-->
 
@@ -137,22 +148,33 @@
 {% block scripts %}
 <script>
   const total = 100;
-  let percentage = 75;
+  // This is not safe if deployed in the internet. CAUTION
+  let percentage = {{ percentage }};
   let dispLabel = "";
-  if(percentage){
+  let color =[];
+  let dat = [percentage, total-percentage];
+  let label = [ "Fake", "Real"];
+  let toreturn = percentage;
+  if(percentage > 50){    
+    color = ["#FF5555", "#CFCFCF"];
     dispLabel = "Fraudulent";
-  }else if(percentage==50){
+  }else if(percentage == 50){
+    color = ["#CFCFCF", "#CFCFCF"];
     dispLabel = "Neutral";
   }else{
+    color = ["#019A5A", "#CFCFCF"];
+    label = [ "Real", "Fake" ]
+    dat = [total-percentage , percentage]
+    toreturn =  total-percentage;
     dispLabel = "Legitimate";
   }
 const getChartOptions = () => {
     return {
       fontSize: '14px',
-      series: [percentage, total-percentage],
-      colors: ["#019A5A", "#CFCFCF"],
+      series: dat,
+      colors: color,
       chart: {
-        width: '100%',
+        width: '75%',
         type: "donut",
         events: {
           mounted: (chart) => {
@@ -181,7 +203,7 @@ const getChartOptions = () => {
                 fontFamily: "Inter, sans-serif",
                 fontSize: '10',
                 formatter: function (w) {
-                  return percentage + '%'
+                  return toreturn + '%'
                 },
               },
               value: {
@@ -203,13 +225,13 @@ const getChartOptions = () => {
           top: -2,
         },
       },
-      labels: ["Real", "Fake"],
+      labels: label,
       dataLabels: {
         enabled: false,
       },
       legend: {
-        width: '100%',
-        height: '100%',
+        width: '75%',
+        height: '750%',
         position: "bottom",
         fontFamily: "Inter, sans-serif",
       },
