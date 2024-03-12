@@ -19,7 +19,7 @@
         </div>
         <div class="flex w-full h-1/4 items-end text-xs">
           <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
-            <button type="reset" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+            <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
                 Clear
             </button>
             <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
@@ -45,7 +45,7 @@
         
         <div class="flex w-full h-1/4 items-end ">
           <div class="w-full mb-4 mx-4 justify-items-stretch">
-            <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+            <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
               Clear
             </button>
           </div>
@@ -119,10 +119,13 @@
             </tr>
         </table>
       </div>
-      <div class="flex w-full items-end ">
-        <div class="w-full mb-4 mx-4 justify-items-stretch">
-          <button type="reset" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
-            Clear
+      <div class="flex w-full h-10 items-end text-xs">
+        <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
+          <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+              Clear
+          </button>
+          <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
+              Detect
           </button>
         </div>
       </div>
@@ -149,23 +152,23 @@
 <script>
   const total = 100;
   // This is not safe if deployed in the internet. CAUTION
-  let percentage = {{ percentage }};
+  let percent = {{ percentage }};
   let dispLabel = "";
   let color =[];
-  let dat = [percentage, total-percentage];
+  let dat = [percent, total-percent];
   let label = [ "Fake", "Real"];
-  let toreturn = percentage;
-  if(percentage > 50){    
+  let toreturn = percent;
+  let toDisp = {{ todisplay }} ;
+
+  if(toDisp == 4){    
     color = ["#FF5555", "#CFCFCF"];
     dispLabel = "Fraudulent";
-  }else if(percentage == 50){
-    color = ["#CFCFCF", "#CFCFCF"];
-    dispLabel = "Neutral";
-  }else{
+  }
+  else{
     color = ["#019A5A", "#CFCFCF"];
     label = [ "Real", "Fake" ]
-    dat = [total-percentage , percentage]
-    toreturn =  total-percentage;
+    dat = [percent ,total-percent ]
+    // toreturn =  total-percent;
     dispLabel = "Legitimate";
   }
 const getChartOptions = () => {
