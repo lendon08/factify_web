@@ -5,7 +5,6 @@
 {% block content %}
      <!-- Initial -->
     {% if todisplay == 1 %}
-    
       <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
         <div>
           <div class="pt-4 mb-4 text-gray-800">
@@ -29,6 +28,7 @@
           </div>
         </div>
       </div>
+      <!-- loading  -->
     {% elif todisplay == 2 %}
       <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
         <div class="flex flex-col w-full h-full justify-center items-center space-y-8">
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      
+      <!-- results   -->
     {% else %}
     <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
       <div class="pl-2 mx-auto min-w-0 max-w-full" id="fake"></div>
@@ -67,14 +67,12 @@
                     <th scope="row" class="py-2 font-medium dark:text-white">
                       {{ a }}
                     </th>
-                    
                     <td class="py-2 font-medium">
                       {{ b }}
                     </td>
                     <td class="py-2 font-medium">
                       {{ c }}
                     </td>
-                    
                 </tr>
             {% endfor %}
         </table>

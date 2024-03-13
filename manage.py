@@ -16,11 +16,14 @@ class TextPreprocessor(BaseEstimator, TransformerMixin):
         return [self.preprocess(text) for text in X]
 
     def preprocess(self, text):
-        # print(textes)
+        escapes = ''.join([chr(char) for char in range(1, 32)]) # join all the possible escape characters
+        translator = str.maketrans('', '', escapes)
+        text = text.translate(translator)
         text = str(text)
         text = text.lower()
         normalized = unicodedata.normalize("NFD", text)
         text = "".join(c for c in normalized if unicodedata.category(c) != "Mn")
+        text = re.sub(r'\xad', '', text) 
         text = re.sub(r'\[.*?\]', '', text)
         text = re.sub(r"\\W", " ", text)
         text = re.sub(r'https?://\S+|www\.\S+', '', text)

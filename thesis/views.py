@@ -49,6 +49,11 @@ def versionTwo(request):
             # if else
             # redirect to a new URL:
             text = form.cleaned_data['content'].split(' ',0)
+            
+            # totest = stack_xgboost.named_steps['preprocess'].transform(text)
+            # print(totest)
+
+            
             result = factCheck(text)
           
             percentages = [(num * 100) for sublist in result for num in sublist]
@@ -62,9 +67,9 @@ def versionTwo(request):
                 sub_percent = 1.1
                 for y in prob:
                     if y[0] > y[1]:
+                        sub_predict = "Fake"
                         sub_percent = format( y[0], ".2%")
                     else:
-                        sub_predict = "Fake"
                         sub_percent = format( y[1], ".2%")
                     
                 estimators.append([re.sub(r'\([^)]*\)', '', str(x)), sub_predict, sub_percent]) 
