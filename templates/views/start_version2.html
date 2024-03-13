@@ -62,61 +62,21 @@
       {% endif %}
       <div class="w-full ml-2 overflow-x-auto ">
         <table class="w-full text-xs text-left  text-gray-500 bg-gray-50 ">
+            {% for a,b,c in estimators %}
                 <tr class="space-x-2">
                     <th scope="row" class="py-2 font-medium dark:text-white">
-                      Naive Bayes
+                      {{ a }}
                     </th>
+                    
                     <td class="py-2 font-medium">
-                      Real
+                      {{ b }}
                     </td>
                     <td class="py-2 font-medium">
-                      72%
+                      {{ c }}
                     </td>
+                    
                 </tr>
-                <tr>
-                    <th scope="row" class="py-2 font-medium  whitespace-nowrap dark:text-white">
-                      Random Forest
-                    </th>
-                    <td class="py-2 font-medium">
-                      Fake
-                    </td>
-                    <td class="py-2 font-medium">
-                      81%
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="py-2 font-medium whitespace-nowrap dark:text-white">
-                      Logistic Regression
-                    </th>
-                    <td class="py-2 font-medium">
-                      Real
-                    </td>
-                    <td class="py-2 font-medium">
-                      79%
-                    </td>
-                </tr>
-                <tr>
-                  <th scope="row" class="py-2 font-medium dark:text-white">
-                    Support Vector Machine
-                  </th>
-                  <td class="py-2 font-medium">
-                    Real
-                  </td>
-                  <td class="py-2 font-medium">
-                    80%
-                  </td>
-              </tr>
-              <tr>
-                <th scope="row" class="py-2 font-medium  whitespace-nowrap dark:text-white">
-                  K-Nearest Neighbors
-                </th>
-                <td class="py-2 font-medium">
-                  Real
-                </td>
-                <td class="py-2 font-medium">
-                  80% 
-                </td>
-            </tr>
+            {% endfor %}
         </table>
       </div>
       <div class="flex w-full h-10 items-end text-xs">

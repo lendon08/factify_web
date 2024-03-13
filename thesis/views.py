@@ -7,19 +7,14 @@ from .forms import NameForm
 import numpy as np
 import datetime
 today = datetime.date.today()
-
+import re
 import joblib
 
 
 best_estimator = joblib.load("static/models/best_estimator.joblib")
 stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
+vectorizer = joblib.load('static/models/vectorizer.joblib')
 
-
-base_knn = joblib.load('static/models/base/baseline_knn.joblib')
-base_lr = joblib.load('static/models/base/baseline_lr.joblib')
-base_nb = joblib.load('static/models/base/baseline_nb.joblib')
-base_rf = joblib.load('static/models/base/baseline_rf.joblib')
-base_svm = joblib.load('static/models/base/baseline_svm.joblib')
 
 # print(loaded_stack_model)
 # TODO
@@ -31,15 +26,19 @@ base_svm = joblib.load('static/models/base/baseline_svm.joblib')
 
 
 def factCheck(text):
-    return stack_xgboost.predict(text.split(' ',0))
+    return stack_xgboost.predict_proba(text)
 
-
+def vectorizer(text):
+    return stack_xgboost.named_steps['vectorizer'].transform(text)
 
 def versionTwo(request):
      # if this is a POST request we need to process the form data
     
     toDisplay = 1
     radialColor="#4E5DDD4A"
+    percentage = 1.1
+    estimators = list() 
+    
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
@@ -49,19 +48,40 @@ def versionTwo(request):
             # process the data in form.cleaned_data as required
             # if else
             # redirect to a new URL:
-            result = factCheck(form.cleaned_data['content'])
-            real = np.count_nonzero(result == 1)
-            fake = np.count_nonzero(result == 0)
-            print("real: " +' '+ str(real))
-            print("fake: " +' '+ str(fake))
-            if fake > real :
+            text = form.cleaned_data['content'].split(' ',0)
+            result = factCheck(text)
+          
+            percentages = [(num * 100) for sublist in result for num in sublist]
+            num = [round(num, 2) for num in percentages]
+            vectorized  = vectorizer(text)
+
+            # put in a list of all base estimator then remove "(any)"
+            for x in stack_xgboost.named_steps['stacking'].estimators_:
+                prob = x.predict_proba(vectorized)
+                sub_predict = "Real"
+                sub_percent = 1.1
+                for y in prob:
+                    if y[0] > y[1]:
+                        sub_percent = format( y[0], ".2%")
+                    else:
+                        sub_predict = "Fake"
+                        sub_percent = format( y[1], ".2%")
+                    
+                estimators.append([re.sub(r'\([^)]*\)', '', str(x)), sub_predict, sub_percent]) 
+            
+            # print(estimators)
+         
+            if num[0] > num[1] :
                 toDisplay = 4
                 radialColor = "#9A01014A"
+                percentage = num[0]
             else:
                 toDisplay = 3
                 radialColor = '#019A5A4A'
+                percentage = num[1]
 
-            return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor ,"todisplay": toDisplay , 'percentage': 100 })
+            return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor ,"todisplay": toDisplay , 'percentage': percentage, 
+                                                                  'estimators': estimators })
 
     # if a GET (or any other method) we'll create a blank form
     else:
