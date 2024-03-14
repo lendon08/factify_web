@@ -13,7 +13,7 @@ import joblib
 
 best_estimator = joblib.load("static/models/best_estimator.joblib")
 stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
-vectorizer = joblib.load('static/models/vectorizer.joblib')
+
 
 
 # print(loaded_stack_model)
