@@ -8,21 +8,48 @@
       <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
         <div>
           <div class="pt-4 mb-4 text-gray-800">
-            <h3 class="text-lg"><strong>Let’s get started.</strong></h3>
+            <h3 class="text-lg"><strong>
+              <!-- Let’s get started. -->
+              Magsimula na tayo.
+            </strong></h3>
           </div>    
           <ul class="space-y-4 text-xs">
-            <li><span class="text-gray-800">Step 1:</span> Type or paste the news article.</li>
-            <li><span class="text-gray-800">Step 2:</span> Click the <em>‘Detect’</em> button to analyze the article.</li>
-            <li><span class="text-gray-800">Step 3:</span> Wait for the results</li>
+            <li><span class="text-gray-800">
+              <!-- Step 1: -->
+              Unang hakbang:
+            </span> 
+              <!-- Type or paste the news article. -->
+              Isulat or idikit ang artikulo ng balita
+              </li>
+            <li><span class="text-gray-800">
+              <!-- Step 2: -->
+              Ikalawang hakbang:
+            </span> 
+              <!-- Click the  -->
+              Pindotin ang
+              <em>
+                <!-- ‘Clear’ -->
+                'Tuklasin'
+              </em> 
+              <!-- button to analyze the article. -->
+              na pindotan para masuri ang atikulo
+            </li>
+            <li><span class="text-gray-800">
+              <!-- Step 3: -->
+              Ikatlong hakbang:
+            </span> 
+            <!-- Wait for the results -->
+            Hintayin ang resulata.
+          </li>
           </ul>
         </div>
         <div class="flex w-full h-1/4 items-end text-xs">
           <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
             <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
-                Clear
+                <!-- Clear --> Linisan
             </button>
             <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
-                Detect
+                <!-- Detect--> Tuklasin
             </button>
             
           </div>
@@ -46,7 +73,7 @@
         <div class="flex w-full h-1/4 items-end ">
           <div class="w-full mb-4 mx-4 justify-items-stretch">
             <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
-              Clear
+              <!-- Clear --> Linisan
             </button>
           </div>
         </div>
@@ -54,23 +81,29 @@
       <!-- results   -->
     {% else %}
     <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
-      <div class="pl-2 mx-auto min-w-0 max-w-full" id="fake"></div>
+      <div class="pl-2 mx-auto min-w-0 max-w-full" id="chart"></div>
       {% if todisplay == 3 %}
-      <h3 class="text-green-600">REAL</h3>
+      <h3 class="text-green-600">LEHITIMO</h3>
       {% else %}
-      <h3 class="text-red-600">FAKE</h3>
+      <h3 class="text-red-600">PEKE</h3>
       {% endif %}
       <div class="w-full ml-2 overflow-x-auto ">
-        <table class="w-full text-xs text-left  text-gray-500 bg-gray-50 ">
+        <table class="w-full text-xs text-left bg-gray-50 table-auto">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Resulta</th>
+              <th class="text-right">Probabilidad</th>
+            </tr>
+          </thead>
             {% for a,b,c in estimators %}
                 <tr class="space-x-2">
-                    <th scope="row" class="py-2 font-medium dark:text-white">
+                    <th scope="row" class="py-2 font-medium dark:text-white ">
                       {{ a }}
                     </th>
                     <td class="py-2 font-medium">
-                      {{ b }}
-                    </td>
-                    <td class="py-2 font-medium">
+                      {{ b}}
+                    <td class="py-2 font-medium text-right">
                       {{ c }}
                     </td>
                 </tr>
@@ -80,27 +113,16 @@
       <div class="flex w-full h-10 items-end text-xs">
         <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
           <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
-              Clear
+              <!-- Clear --> Linisan
           </button>
           <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
-              Detect
+              <!-- Detect--> Tuklasin
           </button>
         </div>
       </div>
     </div>
     {% endif %}
-    <!-- Analyze (Display while waiting for the model to response.) -->
-    <!--  -->
-
    
-
-    <!-- Real (Display when the model returns a value that is less than 50%)--->
-    
-
-    <!-- Fake  (Display when the model returns a value that is more than 50%)-->
-
-
-    <!-- Neutral (Display when the model returns a value that is 50%) -->
     
   
 {% endblock content %}
@@ -114,7 +136,7 @@
   let dispLabel = "";
   let color =[];
   let dat = [percent, total-percent];
-  let label = [ "Fake", "Real"];
+  let label = [ "PEKE", "LEHITIMO"];
   let toreturn = percent;
   let toDisp = {{ todisplay }} ;
 
@@ -124,7 +146,7 @@
   }
   else{
     color = ["#019A5A", "#CFCFCF"];
-    label = [ "Real", "Fake" ]
+    label = [ "LEHITIMO", "PEKE" ]
     dat = [percent ,total-percent ]
     // toreturn =  total-percent;
     dispLabel = "Legitimate";
@@ -155,13 +177,12 @@ const getChartOptions = () => {
               name: {
                 show: true,
                 fontFamily: "Inter, sans-serif",
-                offsetY: 20,
+                offsetY: 0,
               },
               total: {
                 showAlways: true,
                 show: true,
-                label: dispLabel,
-                fontFamily: "Inter, sans-serif",
+                label: '',
                 fontSize: '10',
                 formatter: function (w) {
                   return toreturn + '%'
@@ -171,7 +192,7 @@ const getChartOptions = () => {
                 showAlways: true,
                 show: true,
                 fontFamily: "Inter, sans-serif",
-                offsetY: -20,
+                offsetY: -10,
                 formatter: function (val) {
                   return val + "%"
                 },
@@ -191,36 +212,17 @@ const getChartOptions = () => {
         enabled: false,
       },
       legend: {
+        show: false,
         width: '75%',
         height: '750%',
         position: "bottom",
         fontFamily: "Inter, sans-serif",
       },
-      yaxis: {
-        labels: {
-          formatter: function (value) {
-            return value + "%"
-          },
-        },
-      },
-      xaxis: {
-        labels: {
-          formatter: function (value) {
-            return value  + "%"
-          },
-        },
-        axisTicks: {
-          show: false,
-        },
-        axisBorder: {
-          show: false,
-        },
-      },
     }
   }
 
  
-    var chart = new ApexCharts(document.getElementById("fake"), getChartOptions());
+    var chart = new ApexCharts(document.getElementById("chart"), getChartOptions());
     chart.render();
     //var neutral = new ApexCharts(document.getElementById("neutral"), getChartOptions());
     //neutral.render();

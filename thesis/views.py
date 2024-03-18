@@ -31,6 +31,23 @@ def factCheck(text):
 def vectorizer(text):
     return stack_xgboost.named_steps['vectorizer'].transform(text)
 
+def editEstimator(text):
+    text = re.sub(r'\([^)]*\)', '', str(text))
+    match text:
+        case 'MultinomialNB':
+            return 'Naive Bayes'
+        case 'LogisticRegression':
+            return 'Logistic Regression'
+        case 'RandomForestClassifier':
+            return 'Random Forest'
+        case 'KNeighborsClassifier':
+            return 'K-nearest neighbors'
+        case 'SVC':
+            return 'C-Support Vector'
+        case _:
+            return 'none'
+
+
 def versionTwo(request):
      # if this is a POST request we need to process the form data
     
@@ -63,16 +80,17 @@ def versionTwo(request):
             # put in a list of all base estimator then remove "(any)"
             for x in stack_xgboost.named_steps['stacking'].estimators_:
                 prob = x.predict_proba(vectorized)
-                sub_predict = "Real"
+                sub_predict = "LEHITIMO"
                 sub_percent = 1.1
                 for y in prob:
-                    if y[0] > y[1]:
-                        sub_predict = "Fake"
+                    if num[0] > num[1] :
+                        sub_predict = "PEKE"
                         sub_percent = format( y[0], ".2%")
                     else:
                         sub_percent = format( y[1], ".2%")
-                    
-                estimators.append([re.sub(r'\([^)]*\)', '', str(x)), sub_predict, sub_percent]) 
+                
+                estimator = editEstimator(str(x))
+                estimators.append([estimator, sub_predict, sub_percent]) 
             
             # print(estimators)
          
