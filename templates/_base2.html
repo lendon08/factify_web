@@ -13,64 +13,71 @@
     <title>Factify</title>
     <link rel="icon" href="{% static 'images/logo.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap" rel="stylesheet">
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
 
 </head>
 
-<body class="bg-green-50 " >
-    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900">
-
-        <div id="main-content" class="relative w-full pr-4 h-screen bg-gray-200 dark:bg-gray-300 ">
-       
-            {% block content %}
-            {% endblock content %}
-
+<body>
+    
+    
+    <!-- 
+        Color code pa try nlang kung ok.
+        FAKE = 9A01014A
+        Real = 019A5A4A
+        Default =  4E5DDD4A
+    -->
+    <div class="flex overflow-hidden bg-gray-50 dark:bg-gray-900 overflow-y-auto" style = 'background: radial-gradient(ellipse at 50% 100%, {{ radialColor }}, transparent 50%);'>
+  
+        <div id="main-content" class="relative w-screen h-screen ">
+            <div class="mx-auto w-5/6 text-center pt-4 space-y-10">
+                <a href="{{ .Site.Params.homepage }}/" class="flex justify-center items-center space-x-4">
+                    <img src="{% static 'images/logo.png' %}" alt="Facfity">
+                    <div class="text-xl leading-none text-gray-900 md:text-xl lg:text-xl title">factify</div>
+                </a>
+                <h1 class="text-xl leading-none text-gray-900 md:text-xl lg:text-xl tracking-wide ">
+                    <!-- Filipino Fake News Detector -->
+                    Detector ng Maling Balita sa Filipino
+                </h1>
+                <h2 class="text-base font-normal text-gray-600 lg:text-base px-20 dark:text-gray-400 w-full">
+                    <!-- Transform your online experience with the Filipino Fake News Detector, ensuring a world where information is a beacon of truth. Paste your text or start typing below to determine whether the article is fake or not. -->
+                    
+                    <!-- Baguhin ang iyong karanasan online gamit ang Detector ng Maling Balita, para masiguradong tama ang inyong impormasyon -->
+                    Baguhin ang iyong karanasan online gamit ang Detector ng Maling Balita, para masigurado ang mundo na ang impormasyon ay tama at nag bibigay linaw. 
+                    <br>
+                    <!-- I-paste ang iyong teksto o simulan ang pag-type sa ibaba upang matukoy kung peke ang artikulo o hindi. -->
+                    Idikit o simulang mag sulat iyong artikulo sa ibaba upang matukoy kung peke ang ito o hindi.
+                </h2>
+                <div class="flex px-20 my-auto h-full ">
+        
+                    <form class="w-full h-full drop-shadow-2xl" method="post" action="/">
+                        {% csrf_token %}
+                        <div class="flex h-full w-full px-4 bg-gradient-to-r from-white to-gray-50 rounded-3xl  border border-gray-300  divide-x divide-gray-300 divide-x">
+                            <div class="w-9/12">
+                                <label for="editor" class="sr-only">Text field</label>
+                                {{ form.content }}
+                                <!-- <textarea id="editor" rows="20" class="block w-full h-full resize-none  text-xs text-gray-900 font-medium text-gray-800 bg-white border-0 focus:ring-0 pt-8 px-8" required></textarea> -->
+                            </div>
+                            {% block content %}
+                            {% endblock content %}      
+                        </div>
+                       
+                    </form>
+                </div>
+                
+            </div>
+            
         </div>
-
+        
     </div>
     {% block scripts %}
     {% endblock scripts %}
     
-
-    
-
-    
-
-    <div data-dial-init class="fixed top-6 end-6 group">
-        <button type="button" data-dial-toggle="speed-dial-menu-top-right" aria-controls="speed-dial-menu-top-right" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-            <svg class="w-8 h-8 transition-transform group-hover:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.5 10a2.5 2.5 0 1 1 5 .2 2.4 2.4 0 0 1-2.5 2.4V14m0 3h0m9-5a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-            </svg>
-            <span class="sr-only">Open actions menu</span>
-        </button>
-        <div id="speed-dial-menu-top-right" class="flex flex-col items-center hidden mt-4 space-y-2">
-            <a href="{% url 'startPage' %}" data-tooltip-target="tooltip-newchat" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-                <img src="{% static 'images/new_chat.png' %}" alt="About" width="20">
-            </a>
-            <div id="tooltip-newchat" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                New Chat
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <a href="{% url 'faqPage' %}" data-tooltip-target="tooltip-updates" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-                <img src="{% static 'images/updates.svg' %}" alt="Updates">
-            </a>
-            <div id="tooltip-updates" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                Updates and FAQ
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <a href="{% url 'aboutPage' %}" data-tooltip-target="tooltip-about" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-                <img src="{% static 'images/about.svg' %}" alt="About">
-            </a>
-            <div id="tooltip-about" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                About
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            
-        </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>

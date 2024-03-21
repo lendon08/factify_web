@@ -1,0 +1,234 @@
+<!-- templates/start_page.html -->
+{% extends "_base2.html" %}
+
+{% load static %}
+{% block content %}
+     <!-- Initial -->
+    {% if todisplay == 1 %}
+      <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
+        <div>
+          <div class="pt-4 mb-4 text-gray-800">
+            <h3 class="text-lg"><strong>
+              <!-- Let’s get started. -->
+              Magsimula na tayo.
+            </strong></h3>
+          </div>    
+          <ul class="space-y-4 text-xs">
+            <li><span class="text-gray-800">
+              <!-- Step 1: -->
+              Unang hakbang:
+            </span> 
+              <!-- Type or paste the news article. -->
+              Isulat or idikit ang artikulo ng balita
+              </li>
+            <li><span class="text-gray-800">
+              <!-- Step 2: -->
+              Ikalawang hakbang:
+            </span> 
+              <!-- Click the  -->
+              Pindotin ang
+              <em>
+                <!-- ‘Clear’ -->
+                'Tuklasin'
+              </em> 
+              <!-- button to analyze the article. -->
+              na pindotan para masuri ang atikulo
+            </li>
+            <li><span class="text-gray-800">
+              <!-- Step 3: -->
+              Ikatlong hakbang:
+            </span> 
+            <!-- Wait for the results -->
+            Hintayin ang resulata.
+          </li>
+          </ul>
+        </div>
+        <div class="flex w-full h-1/4 items-end text-xs">
+          <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
+            <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+                <!-- Clear --> Linisan
+            </button>
+            <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
+                <!-- Detect--> Tuklasin
+            </button>
+            
+          </div>
+        </div>
+      </div>
+      <!-- loading  -->
+    {% elif todisplay == 2 %}
+      <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
+        <div class="flex flex-col w-full h-full justify-center items-center space-y-8">
+          <div role="status">
+              <svg aria-hidden="true" class="inline w-52 h-52 text-gray-200 animate-pulse dark:text-gray-600 " viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle r="50" cx="200" cy="200" stroke="#004CC6" stroke-width="20" opacity="0.5"/>
+                <circle r="90" cx="200" cy="200" stroke="#004CC6" stroke-width="20" opacity="0.75"/>
+                <circle r="130" cx="200" cy="200" stroke="#004CC6" stroke-width="20" />
+              </svg>
+              <span class="sr-only">Loading...</span>
+          </div>
+          <div>Analyzing Text</div>  
+        </div>
+        
+        <div class="flex w-full h-1/4 items-end ">
+          <div class="w-full mb-4 mx-4 justify-items-stretch">
+            <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-sm font-medium  text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+              <!-- Clear --> Linisan
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- results   -->
+    {% else %}
+    <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
+      <div class="pl-2 mx-auto min-w-0 max-w-full" id="chart"></div>
+      {% if todisplay == 3 %}
+      <h3 class="text-green-600">LEHITIMO</h3>
+      {% else %}
+      <h3 class="text-red-600">PEKE</h3>
+      {% endif %}
+      <div class="w-full ml-2 overflow-x-auto ">
+        <table class="w-full text-xs text-left bg-gray-50 table-auto">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Resulta</th>
+              <th class="text-right">Probabilidad</th>
+            </tr>
+          </thead>
+            {% for a,b,c in estimators %}
+                <tr class="space-x-2">
+                    <th scope="row" class="py-2 font-medium dark:text-white ">
+                      {{ a }}
+                    </th>
+                    <td class="py-2 font-medium">
+                      {{ b}}
+                    <td class="py-2 font-medium text-right">
+                      {{ c }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+      </div>
+      <div class="flex w-full h-10 items-end text-xs">
+        <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
+          <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+              <!-- Clear --> Linisan
+          </button>
+          <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
+              <!-- Detect--> Tuklasin
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+   
+    
+  
+{% endblock content %}
+
+
+{% block scripts %}
+<script>
+  const total = 100;
+  // This is not safe if deployed in the internet. CAUTION
+  let percent = {{ percentage }};
+  let dispLabel = "";
+  let color =[];
+  let dat = [percent, total-percent];
+  let label = [ "PEKE", "LEHITIMO"];
+  let toreturn = percent;
+  let toDisp = {{ todisplay }} ;
+
+  if(toDisp == 4){    
+    color = ["#FF5555", "#CFCFCF"];
+    dispLabel = "Fraudulent";
+  }
+  else{
+    color = ["#019A5A", "#CFCFCF"];
+    label = [ "LEHITIMO", "PEKE" ]
+    dat = [percent ,total-percent ]
+    // toreturn =  total-percent;
+    dispLabel = "Legitimate";
+  }
+const getChartOptions = () => {
+    return {
+      fontSize: '14px',
+      series: dat,
+      colors: color,
+      chart: {
+        width: '75%',
+        type: "donut",
+        events: {
+          mounted: (chart) => {
+            chart.windowResizeHandler();
+          }
+        }
+      },
+      stroke: {
+        colors: ["transparent"],
+        lineCap: "",
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            labels: {
+              show: true,
+              name: {
+                show: true,
+                fontFamily: "Inter, sans-serif",
+                offsetY: 0,
+              },
+              total: {
+                showAlways: true,
+                show: true,
+                label: '',
+                fontSize: '10',
+                formatter: function (w) {
+                  return toreturn + '%'
+                },
+              },
+              value: {
+                showAlways: true,
+                show: true,
+                fontFamily: "Inter, sans-serif",
+                offsetY: -10,
+                formatter: function (val) {
+                  return val + "%"
+                },
+              },
+            },
+            size: "90%",
+          },
+        },
+      },
+      grid: {
+        padding: {
+          top: -2,
+        },
+      },
+      labels: label,
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        show: false,
+        width: '75%',
+        height: '750%',
+        position: "bottom",
+        fontFamily: "Inter, sans-serif",
+      },
+    }
+  }
+
+ 
+    var chart = new ApexCharts(document.getElementById("chart"), getChartOptions());
+    chart.render();
+    //var neutral = new ApexCharts(document.getElementById("neutral"), getChartOptions());
+    //neutral.render();
+    //var legit = new ApexCharts(document.getElementById("legit"), getChartOptions());
+    //legit.render();
+    
+    
+  </script>
+{% endblock scripts %}

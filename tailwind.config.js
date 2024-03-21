@@ -12,7 +12,8 @@ module.exports = {
     },
     fontFamily: {
       'body': [
-    'Inter'
+    'Inter',
+    'Outfit'
   ],
       'sans': [
     'Inter'
