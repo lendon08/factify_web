@@ -60,14 +60,17 @@ def versionTwo(request):
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
+       
         # check whether it's valid:
         if form.is_valid():
+            if len(form.cleaned_data['content']) == 0:
+                return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 1})
             
-            # process the data in form.cleaned_data as required
-            # if else
-            # redirect to a new URL:
+            
             text = form.cleaned_data['content'].split(' ',0)
             
+            
+
             # totest = stack_xgboost.named_steps['preprocess'].transform(text)
             # print(totest)
 
