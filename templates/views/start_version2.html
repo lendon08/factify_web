@@ -5,7 +5,7 @@
 {% block content %}
      <!-- Initial -->
     {% if todisplay == 1 %}
-      <div class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
+      <div id='results' class="flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12">
         <div>
           <div class="pt-4 mb-4 text-gray-800">
             <h3 class="text-lg"><strong>
@@ -80,7 +80,7 @@
       </div>
       <!-- results   -->
     {% else %}
-    <div class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
+    <div id='result' class="flex flex-col bg-gray-50 text-gray-800 w-3/12 items-center min-h-0 max-h-screen min-w-0 max-w-screen space-y-4 px-4 pt-2">
       <div class="pl-2 mx-auto min-w-0 max-w-full" id="chart"></div>
       {% if todisplay == 3 %}
       <h3 class="text-green-600">LEHITIMO</h3>
@@ -112,7 +112,7 @@
       </div>
       <div class="flex w-full h-10 items-end text-xs">
         <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
-          <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+          <button type="reset" onClick="clearAll()" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
               <!-- Clear --> Linisan
           </button>
           <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
@@ -130,10 +130,87 @@
 
 {% block scripts %}
 <script>
+  function clearAll(){
+    document.getElementById('editor').innerHTML ='';
+    result = document.querySelector('#result');
+    result.innerHTML ='';
+    result.setAttribute("class", "flex flex-col pl-4 text-left text-gray-600 justify-between w-3/12");
+    result.innerHTML = `<div>
+          <div class="pt-4 mb-4 text-gray-800">
+            <h3 class="text-lg"><strong>
+              <!-- Let’s get started. -->
+              Magsimula na tayo.
+            </strong></h3>
+          </div>    
+          <ul class="space-y-4 text-xs">
+            <li><span class="text-gray-800">
+              <!-- Step 1: -->
+              Unang hakbang:
+            </span> 
+              <!-- Type or paste the news article. -->
+              Isulat or idikit ang artikulo ng balita
+              </li>
+            <li><span class="text-gray-800">
+              <!-- Step 2: -->
+              Ikalawang hakbang:
+            </span> 
+              <!-- Click the  -->
+              Pindotin ang
+              <em>
+                <!-- ‘Clear’ -->
+                'Tuklasin'
+              </em> 
+              <!-- button to analyze the article. -->
+              na pindotan para masuri ang atikulo
+            </li>
+            <li><span class="text-gray-800">
+              <!-- Step 3: -->
+              Ikatlong hakbang:
+            </span> 
+            <!-- Wait for the results -->
+            Hintayin ang resulata.
+          </li>
+          </ul>
+        </div>
+        <div class="flex w-full h-1/4 items-end text-xs">
+          <div class="flex w-full mb-4 mx-4 justify-items-stretch space-x-4">
+            <button type="reset" onClick="document.getElementById('editor').innerHTML =''" class="w-full px-5 py-2.5 text-blue-600 bg-blue-50 rounded-lg transition duration-75 hover:bg-blue-100">
+                <!-- Clear --> Linisan
+            </button>
+            <button type="submit" class="w-full px-5 py-2.5 text-white bg-blue-700 rounded-lg transition duration-75 hover:bg-blue-600 hover:text-gray-700">
+                <!-- Detect--> Tuklasin
+            </button>
+            
+          </div>
+        </div>`;
+  }
+</script>
+<script>
+  document.body.onload = function() {
+    checkTextField()
+  };
+  function checkTextField() {
+    console.log('text field called');
+    var textFieldValue = document.getElementById("editor").value;
+    var buttons = document.querySelectorAll("button");
+    if (textFieldValue.trim() === "") {
+        buttons.forEach(function(button) {
+            button.disabled = true;
+        });
+    } else {
+        buttons.forEach(function(button) {
+            button.disabled = false;
+        });
+    }
+}
+  
+
+</script>
+<script>
   const total = 100;
   // This is not safe if deployed in the internet. CAUTION
   let percent = {{ percentage }};
-  console.log(percent);
+  
   let dispLabel = "";
   let color =[];
   let dat = [percent, total-percent];
