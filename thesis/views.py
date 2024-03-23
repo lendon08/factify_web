@@ -9,10 +9,19 @@ import datetime
 today = datetime.date.today()
 import re
 import joblib
+import re
+
+def validate_input(input_string):
+    if re.match(r"^[a-zA-Z\-.,'!? ]+$", input_string):
+        return True
+    else:
+        return False
 
 
-best_estimator = joblib.load("static/models/best_estimator.joblib")
-stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
+
+
+# best_estimator = joblib.load("static/models/best_estimator.joblib")
+# stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
 
 random_forest = joblib.load("static/models/pipeline_rf_2.joblib")
 
@@ -63,11 +72,17 @@ def versionTwo(request):
        
         # check whether it's valid:
         if form.is_valid():
+            
+            
             if len(form.cleaned_data['content']) == 0:
                 return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 1})
             
             elif len(form.cleaned_data['content']) <= 100:
                 return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 2})
+            
+            # if not validate_input(form.cleaned_data['content']):
+            #     return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 3})
+            
             text = form.cleaned_data['content'].split(' ',0)
             
             
@@ -115,7 +130,7 @@ def versionTwo(request):
     else:
         form = NameForm()
     
-    return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 })
+    return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error':0 })
     
 
 def index(request):
