@@ -66,7 +66,8 @@ def versionTwo(request):
             if len(form.cleaned_data['content']) == 0:
                 return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 1})
             
-            
+            elif len(form.cleaned_data['content']) <= 100:
+                return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 2})
             text = form.cleaned_data['content'].split(' ',0)
             
             
