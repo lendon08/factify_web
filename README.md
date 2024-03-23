@@ -1,6 +1,10 @@
 # Factify
 CS-Thesis 2 Web(Django + Tailwind CSS + Flowbite)
 
+## Install First
+```
+pip install spacy
+```
 
 ## Run the code
 ```
