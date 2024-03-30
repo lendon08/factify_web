@@ -18,11 +18,6 @@ def validate_input(input_string):
         return False
 
 
-
-
-# best_estimator = joblib.load("static/models/best_estimator.joblib")
-# stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
-
 random_forest = joblib.load("static/models/pipeline_rf_2.joblib")
 
 
