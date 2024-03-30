@@ -14,6 +14,10 @@ pip install nltk
 pip install scikit-learn
 ```
 
+```
+pip install django_compressor
+```
+
 ## Run the code
 ```
 npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
