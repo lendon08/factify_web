@@ -11,8 +11,10 @@ import re
 import joblib
 
 
-best_estimator = joblib.load("static/models/best_estimator.joblib")
-stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
+# best_estimator = joblib.load("static/models/best_estimator.joblib")
+# stack_rf = joblib.load("static/models/stack_rf.joblib")
+
+stack_rf = joblib.load("static/models/pipeline_rf_965.joblib")
 
 
 
@@ -26,10 +28,10 @@ stack_xgboost = joblib.load("static/models/stack_xgboost.joblib")
 
 
 def factCheck(text):
-    return stack_xgboost.predict_proba(text)
+    return stack_rf.predict_proba(text)
 
 def vectorizer(text):
-    return stack_xgboost.named_steps['vectorizer'].transform(text)
+    return stack_rf.named_steps['vectorizer'].transform(text)
 
 def editEstimator(text):
     text = re.sub(r'\([^)]*\)', '', str(text))
@@ -67,7 +69,7 @@ def versionTwo(request):
             # redirect to a new URL:
             text = form.cleaned_data['content'].split(' ',0)
             
-            # totest = stack_xgboost.named_steps['preprocess'].transform(text)
+            # totest = stack_rf.named_steps['preprocess'].transform(text)
             # print(totest)
 
             
@@ -78,7 +80,7 @@ def versionTwo(request):
             vectorized  = vectorizer(text)
 
             # put in a list of all base estimator then remove "(any)"
-            for x in stack_xgboost.named_steps['stacking'].estimators_:
+            for x in stack_rf.named_steps['stacking'].estimators_:
                 prob = x.predict_proba(vectorized)
                 sub_predict = "LEHITIMO"
                 sub_percent = 1.1
