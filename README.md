@@ -1,6 +1,18 @@
 # Factify
 CS-Thesis 2 Web(Django + Tailwind CSS + Flowbite)
 
+## Install pip
+```
+pip install Django
+```
+
+```
+pip install nltk
+```
+
+```
+pip install scikit-learn
+```
 
 ## Run the code
 ```
