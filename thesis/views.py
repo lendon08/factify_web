@@ -9,13 +9,10 @@ import datetime
 today = datetime.date.today()
 import re
 import joblib
+import re
 
 
-# best_estimator = joblib.load("static/models/best_estimator.joblib")
-# stack_rf = joblib.load("static/models/stack_rf.joblib")
-
-stack_rf = joblib.load("static/models/pipeline_rf_965.joblib")
-
+random_forest = joblib.load("static/models/pipeline_rf_965.joblib")
 
 
 # print(loaded_stack_model)
@@ -28,10 +25,10 @@ stack_rf = joblib.load("static/models/pipeline_rf_965.joblib")
 
 
 def factCheck(text):
-    return stack_rf.predict_proba(text)
+    return random_forest.predict_proba(text)
 
 def vectorizer(text):
-    return stack_rf.named_steps['vectorizer'].transform(text)
+    return random_forest.named_steps['vectorizer'].transform(text)
 
 def editEstimator(text):
     text = re.sub(r'\([^)]*\)', '', str(text))
@@ -61,15 +58,23 @@ def versionTwo(request):
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
+       
         # check whether it's valid:
         if form.is_valid():
             
-            # process the data in form.cleaned_data as required
-            # if else
-            # redirect to a new URL:
+            
+            if len(form.cleaned_data['content']) == 0:
+                return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 1})
+            
+            elif len(form.cleaned_data['content']) <= 100:
+                return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error': 2})
+            
+           
             text = form.cleaned_data['content'].split(' ',0)
             
-            # totest = stack_rf.named_steps['preprocess'].transform(text)
+            
+
+            # totest = stack_xgboost.named_steps['preprocess'].transform(text)
             # print(totest)
 
             
@@ -80,7 +85,7 @@ def versionTwo(request):
             vectorized  = vectorizer(text)
 
             # put in a list of all base estimator then remove "(any)"
-            for x in stack_rf.named_steps['stacking'].estimators_:
+            for x in random_forest.named_steps['stacking'].estimators_:
                 prob = x.predict_proba(vectorized)
                 sub_predict = "LEHITIMO"
                 sub_percent = 1.1
@@ -112,7 +117,7 @@ def versionTwo(request):
     else:
         form = NameForm()
     
-    return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 })
+    return render(request, 'views/start_version2.html' , {"form": form, 'radialColor': radialColor, 'todisplay': toDisplay, 'percentage': 75 , 'error':0 })
     
 
 def index(request):
@@ -130,4 +135,3 @@ def aboutPage(request):
 def faqPage(request):
     template = loader.get_template('views/faq_page.html')
     return HttpResponse(template.render({'year': today.strftime('%G')}))
-

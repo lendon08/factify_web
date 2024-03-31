@@ -25,10 +25,12 @@ load_dotenv(env_path)
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g_61&ig5e@v1pnv^f-@^8o2c%esv#$5yln_xbm_l8&0q(x#f9s'
+# SECRET_KEY = 'django-insecure-g_61&ig5e@v1pnv^f-@^8o2c%esv#$5yln_xbm_l8&0q(x#f9s'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-g_61&ig5e@v1pnv^f-@^8o2c%esv#$5yln_xbm_l8&0q(x#f9s')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['*']
 
@@ -128,7 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 
 # Run the command: py manage.py collectstatic to collect static files.
 # This production code might break development mode, so we check whether we're in DEBUG mode
@@ -150,4 +152,9 @@ COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
