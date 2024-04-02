@@ -24,6 +24,8 @@ load_dotenv(env_path)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-g_61&ig5e@v1pnv^f-@^8o2c%esv#$5yln_xbm_l8&0q(x#f9s'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-g_61&ig5e@v1pnv^f-@^8o2c%esv#$5yln_xbm_l8&0q(x#f9s')
@@ -157,4 +159,11 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "loggers": {"": {"handlers": ["console"], "level": "DEBUG"}},
 }
