@@ -4,12 +4,12 @@ owing:
 # Exit on error
 set -o errexit
 
-pip install --upgrade pip
+# pip install --upgrade pip
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip install -r requirements.txt
 
-pip install pypiwin32
+# pip install pypiwin32
 
 # Convert static asset files
 python manage.py collectstatic --no-input
