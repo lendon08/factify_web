@@ -12,7 +12,7 @@ import joblib
 import re
 
 
-random_forest = joblib.load("static/models/pipeline_rf_965.joblib")
+random_forest = joblib.load("static/models/pipeline_rf_964.joblib")
 
 
 # print(loaded_stack_model)
