@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-g_61&ig5e@v1pn
 # DEBUG = True
 DEBUG = True
 
-ALLOWED_HOSTS = ["*", "https://factify-web-1.onrender.com/"]
+ALLOWED_HOSTS = ["*", "factify-web-1.onrender.com"]
 
 
 # Application definition
