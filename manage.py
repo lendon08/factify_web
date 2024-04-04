@@ -14,7 +14,41 @@ nltk.download('punkt')
 # Stopword Removal
 
 
+ps = PorterStemmer()
+with open('stopwords-tl.json', 'r') as f:
+    stopwords = json.load(f)
 
+# Custom transformer for text preprocessing
+class TextPreprocessor(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        pass
+    
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        return [' '.join(self.preprocess(text)) for text in X]
+    
+    def preprocess(self, text):
+        # Lowercase Conversion
+        lowered = text.lower()
+
+        # URL Removal
+        urled = re.sub(r'https?://\S+|www\.\S+', '', lowered)
+        
+        # Text Simplification
+        text = re.sub(r'\[.*?\]', '', urled)
+        text = re.sub(r"\\W", " ", text)
+        text = re.sub(r'<.*?>+', '', text)
+        text = re.sub(r'[%s]' % re.escape(string.punctuation), '', text)
+        text = re.sub(r'\n', '', text)
+        text = re.sub(r'\w*\d\w*', '', text)
+
+        # Tokenization
+        tokens = nltk.word_tokenize(text)
+        stems = [ps.stem(token) for token in tokens]
+        filtered = [stem for stem in stems if stem not in stopwords]
+        return filtered
 
 def main():
     """Run administrative tasks."""
@@ -31,39 +65,5 @@ def main():
 
 
 if __name__ == '__main__':
-    ps = PorterStemmer()
-    with open('stopwords-tl.json', 'r') as f:
-        stopwords = json.load(f)
-
-    # Custom transformer for text preprocessing
-    class TextPreprocessor(BaseEstimator, TransformerMixin):
-        def __init__(self):
-            pass
-        
-        def fit(self, X, y=None):
-            return self
-        
-        def transform(self, X):
-            return [' '.join(self.preprocess(text)) for text in X]
-        
-        def preprocess(self, text):
-            # Lowercase Conversion
-            lowered = text.lower()
-
-            # URL Removal
-            urled = re.sub(r'https?://\S+|www\.\S+', '', lowered)
-            
-            # Text Simplification
-            text = re.sub(r'\[.*?\]', '', urled)
-            text = re.sub(r"\\W", " ", text)
-            text = re.sub(r'<.*?>+', '', text)
-            text = re.sub(r'[%s]' % re.escape(string.punctuation), '', text)
-            text = re.sub(r'\n', '', text)
-            text = re.sub(r'\w*\d\w*', '', text)
-
-            # Tokenization
-            tokens = nltk.word_tokenize(text)
-            stems = [ps.stem(token) for token in tokens]
-            filtered = [stem for stem in stems if stem not in stopwords]
-            return filtered
+    
     main()
