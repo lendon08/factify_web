@@ -141,11 +141,11 @@
   let toDisp = {{ todisplay }} ;
 
   if(toDisp == 4){    
-    color = ["#FF5555", "#CFCFCF"];
+    color = ["#FF5555", "#019A5A"];
     dispLabel = "Fraudulent";
   }
   else{
-    color = ["#019A5A", "#CFCFCF"];
+    color = ["#019A5A", "#FF5555"];
     label = [ "LEHITIMO", "PEKE" ]
     dat = [percent ,total-percent ]
     // toreturn =  total-percent;
@@ -159,6 +159,10 @@ const getChartOptions = () => {
       chart: {
         width: '75%',
         type: "donut",
+        animations: {
+            enabled: true,
+            speed: 950
+        },
         events: {
           mounted: (chart) => {
             chart.windowResizeHandler();
@@ -211,6 +215,13 @@ const getChartOptions = () => {
       dataLabels: {
         enabled: false,
       },
+      yaxis: {
+      labels: {
+          formatter: function (value) {
+            return value + "%"
+          },
+        },
+      },
       legend: {
         show: false,
         width: '75%',
@@ -224,10 +235,7 @@ const getChartOptions = () => {
  
     var chart = new ApexCharts(document.getElementById("chart"), getChartOptions());
     chart.render();
-    //var neutral = new ApexCharts(document.getElementById("neutral"), getChartOptions());
-    //neutral.render();
-    //var legit = new ApexCharts(document.getElementById("legit"), getChartOptions());
-    //legit.render();
+  
     
     
   </script>

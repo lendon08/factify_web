@@ -10,7 +10,7 @@ import re
 import nltk
 from nltk.stem import PorterStemmer
 import json
-import nltk.data
+nltk.download('punkt')
 # Stopword Removal
 
 

@@ -73,13 +73,13 @@ def versionTwo(request):
             text = form.cleaned_data['content'].split(' ',0)
             
             
-            print("im okay here")
+          
             # totest = stack_xgboost.named_steps['preprocess'].transform(text)
             # print(totest)
 
             
             result = factCheck(text)
-            print("im okay here2")
+           
             percentages = [(num * 100) for sublist in result for num in sublist]
             num = [round(num, 2) for num in percentages]
             vectorized  = vectorizer(text)
