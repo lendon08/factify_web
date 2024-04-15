@@ -18,7 +18,7 @@ def validate_input(input_string):
         return False
 
 
-random_forest = joblib.load("static/models/pipeline_rf_2.joblib")
+random_forest = joblib.load("static/models/pipeline_rf_964.joblib")
 
 
 # print(loaded_stack_model)
