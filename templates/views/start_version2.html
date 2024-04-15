@@ -218,7 +218,7 @@ const getChartOptions = () => {
       yaxis: {
       labels: {
           formatter: function (value) {
-            return value + "%"
+            return Number(value).toFixed(2) + "%"
           },
         },
       },
